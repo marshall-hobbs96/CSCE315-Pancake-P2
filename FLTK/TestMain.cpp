@@ -1,5 +1,6 @@
 #include "Start_screen.h"
 #include <FL/Fl_Text_Display.H>
+#include "Start_screen.cpp"
 #include "Difficulty_window.cpp"
 #include "SetOrder_window.cpp"
 //#include "Game_window.cpp"

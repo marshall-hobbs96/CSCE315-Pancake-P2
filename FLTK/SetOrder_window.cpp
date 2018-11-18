@@ -11,7 +11,7 @@ struct SetOrder_window : Graph_lib::Window {
     
     SetOrder_window(Point xy, int w, int h, const string& title) : // User chooses game difficulty in this window
         Window(xy,w,h,title),
-		input_order(Point(400,400),120,20,"SET ORDER PalaceHolder: "),
+		input_order(Point(400,200),120,20,"SET ORDER PalaceHolder: "),
 		submit_button(Point(int(x_max()/2)-200,y_max()-200), 400, 100, "Submit", cb_submit),
         running(true)
     {
@@ -20,6 +20,11 @@ struct SetOrder_window : Graph_lib::Window {
     }
     void wait_for_button(int* humanStack, int* AIStack)
     {
+        Text title(Point(400,100),"Choose Your Order!");
+        title.set_font(Graph_lib::Font::helvetica_bold);
+        title.set_font_size(40);
+        attach(title);
+        
         while(running) Fl::wait(0);
         hide();
     }
