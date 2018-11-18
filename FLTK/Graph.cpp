@@ -70,7 +70,7 @@ void Shape::draw() const
 
 void Shape::move(int dx, int dy)    // move the shape +=dx and +=dy
 {
-    for (int i = 0; i<points.size(); ++i) {
+    for (unsigned int i = 0; i<points.size(); ++i) {
         points[i].x+=dx;
         points[i].y+=dy;
     }
@@ -419,7 +419,7 @@ Suffix::Encoding get_encoding(const string& s)
     {
         int len = strlen(smap[i].extension);
 
-        if (s.length() >= len && s.substr(s.length()-len, len) == smap[i].extension)
+        if ((int)s.length() >= len && s.substr(s.length()-len, len) == smap[i].extension)
             return smap[i].suffix;
     }
 
@@ -471,4 +471,3 @@ void Image::draw_lines() const
 //------------------------------------------------------------------------------
 
 } // of namespace Graph_lib
-

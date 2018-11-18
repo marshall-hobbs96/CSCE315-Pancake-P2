@@ -1,4 +1,4 @@
-//#include "Start_window.h"
+#include "Start_screen.h"
 #include <FL/Fl_Text_Display.H>
 #include "Difficulty_window.cpp"
 #include "SetOrder_window.cpp"
@@ -17,7 +17,8 @@ int main()
     const int WINDOW_HEIGHT = 720;
    
     //Start splash window
-    //Start_window window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+    Start_screen window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	window.getSplashInput();
     //window.wait_for_button();
     
 	bool run = true;

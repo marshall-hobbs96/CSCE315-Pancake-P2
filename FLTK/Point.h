@@ -26,4 +26,3 @@ inline bool operator!=(Point a, Point b) { return !(a==b); }
 //------------------------------------------------------------------------------
 
 #endif // POINT_GUARD
-
