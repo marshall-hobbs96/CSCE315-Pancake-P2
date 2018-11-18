@@ -1,6 +1,7 @@
 //#include "Start_window.h"
-#include "Difficulty_window.cpp"
 #include <FL/Fl_Text_Display.H>
+#include "Difficulty_window.cpp"
+#include "SetOrder_window.cpp"
 //#include "Game_window.cpp"
 //#include "InputName_window.cpp"
 //#include "GameOver_window.cpp"
@@ -36,7 +37,12 @@ void start(bool &playagain)
 	
 	// select difficulty
 	Difficulty_window diff_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
-    diff_window.wait_for_button(numOfPancakes, difficulty);
+	diff_window.wait_for_button(numOfPancakes, difficulty);
+	int playerStack[numOfPancakes];
+	int AIStack[numOfPancakes];
+	
+	SetOrder_window set_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	set_window.wait_for_button(playerStack, AIStack);
 
 	// //Select difficulty window and store in string difficulty
     // string difficulty = "";
