@@ -85,6 +85,7 @@ void Start_screen::titles(){
 	Text title(Point(300,100),"Ultimate Pancake Flipper Simulator 2018");
 	title.set_font(Graph_lib::Font::helvetica_bold);
 	title.set_font_size(40);
+	title.set_color(Color::black);
 	text.push_back(&title);
 	attach(title);
 	
@@ -92,6 +93,7 @@ void Start_screen::titles(){
 	Text team(Point(850,200),"**** Team 13 ****");
 	team.set_font(Graph_lib::Font::helvetica_bold);
 	team.set_font_size(30);
+	team.set_color(Color::black);
 	text.push_back(&team);
 	attach(team);
 	
@@ -99,6 +101,7 @@ void Start_screen::titles(){
 	Text members(Point(900,300),"Members:");
 	members.set_font(Graph_lib::Font::helvetica_bold);
 	members.set_font_size(30);
+	members.set_color(Color::black);
 	text.push_back(&members);
 	attach(members);
 	
@@ -112,18 +115,21 @@ void Start_screen::members1(){
 	Text member4(Point(1050,450),"Hannah Hutton");
 	member4.set_font(Graph_lib::Font::helvetica_bold);
 	member4.set_font_size(25);
+	member4.set_color(Color::black);
 	text.push_back(&member4);
 	attach(member4);
 	
-	Text member5(Point(750,500),"Jevika Jarmarwala");
+	Text member5(Point(750,500),"Jeevika Jarmarwala");
 	member5.set_font(Graph_lib::Font::helvetica_bold);
 	member5.set_font_size(25);
+	member5.set_color(Color::black);
 	text.push_back(&member5);
 	attach(member5);
 
 	Text member6(Point(1050,500),"McLain Johnson");
 	member6.set_font(Graph_lib::Font::helvetica_bold);
 	member6.set_font_size(25);
+	member6.set_color(Color::black);
 	text.push_back(&member6);
 	attach(member6);
 	
@@ -135,18 +141,21 @@ void Start_screen::members2(){
 	Text member1(Point(750,400),"Leuel Asnake");
 	member1.set_font(Graph_lib::Font::helvetica_bold);
 	member1.set_font_size(25);
+	member1.set_color(Color::black);
 	text.push_back(&member1);
 	attach(member1);
 	
 	Text member2(Point(1050,400),"Samantha Hay");
 	member2.set_font(Graph_lib::Font::helvetica_bold);
 	member2.set_font_size(25);
+	member2.set_color(Color::black);
 	text.push_back(&member2);
 	attach(member2);
 	
 	Text member3(Point(750,450),"Marshall Hobbs");
 	member3.set_font(Graph_lib::Font::helvetica_bold);
 	member3.set_font_size(25);
+	member3.set_color(Color::black);
 	text.push_back(&member3);
 	attach(member3);
 	
@@ -166,6 +175,7 @@ void Start_screen::instructionTitles(){
 	Text title(Point(500,100),"Instructions");
 	title.set_font(Graph_lib::Font::helvetica_bold);
 	title.set_font_size(50);
+	title.set_color(Color::black);
 	text.push_back(&title);
 	attach(title);
 	
@@ -173,6 +183,7 @@ void Start_screen::instructionTitles(){
 	Text goal(Point(50,200),"Goal:");
 	goal.set_font(Graph_lib::Font::helvetica_bold);
 	goal.set_font_size(30);
+	goal.set_color(Color::black);
 	text.push_back(&goal);
 	attach(goal);
 	
@@ -180,6 +191,7 @@ void Start_screen::instructionTitles(){
 	Text howToPlay(Point(50,350),"How To Play:");
 	howToPlay.set_font(Graph_lib::Font::helvetica_bold);
 	howToPlay.set_font_size(30);
+	howToPlay.set_color(Color::black);
 	text.push_back(&howToPlay);
 	attach(howToPlay);
 	
@@ -193,18 +205,21 @@ void Start_screen::goalStatment(){
 	Text goalS(Point(150,200),"Your goal is to sort a stack of pancakes from top to bottom (meaning the ");
 	goalS.set_font(Graph_lib::Font::helvetica);
 	goalS.set_font_size(27);
+	goalS.set_color(Color::black);
 	text.push_back(&goalS);
 	attach(goalS);
 	//second line
 	Text goalS2(Point(150,240),"smallest pancake will be on the top and the largest on the bottom) before");
 	goalS2.set_font(Graph_lib::Font::helvetica);
 	goalS2.set_font_size(27);
+	goalS2.set_color(Color::black);
 	text.push_back(&goalS2);
 	attach(goalS2);
 	//third line
 	Text goalS3(Point(150,280),"the computer sorts a stack of pancakes identical to yours.");
 	goalS3.set_font(Graph_lib::Font::helvetica);
 	goalS3.set_font_size(27);
+	goalS3.set_color(Color::black);
 	text.push_back(&goalS3);
 	attach(goalS3);
 	
