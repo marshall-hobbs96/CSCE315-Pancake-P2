@@ -53,7 +53,7 @@ void Start_screen::change(){
 }
 
 void Start_screen::titles(){
-	Text title(Point(300,100),"Ultimate Pancake Flipper Smulator 2018");
+	Text title(Point(300,100),"Ultimate Pancake Flipper Simulator 2018");
 	title.set_font(Graph_lib::Font::helvetica_bold);
 	title.set_font_size(40);
 	text.push_back(&title);
