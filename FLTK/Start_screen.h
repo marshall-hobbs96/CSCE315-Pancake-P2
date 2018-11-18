@@ -36,6 +36,9 @@ struct Start_screen : Graph_lib::Window {
 	void instructionScreen();
 	void instructionTitles();
 	void goalStatment();
+	void instructionStatements1();
+	void instructionStatements2();
+	void instructionStatements3();
 	
 	//Shared
 	void run();
