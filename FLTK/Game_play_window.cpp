@@ -39,14 +39,47 @@ struct Game_play_window : Graph_lib::Window {
     }
 
     void draw_stack(int* stack, bool player, int flipFrom) { // ****************************
+
+        //1280 x 720
+        vector<Ellipse> ells; 
+
         if (player) { // sets cursor to draw User or AI stack
             // setdrawing cursor
-        }
-        for (int i = 0; i < curr_game->getStackSize(); i++) {
+
+            for (int i = 0; i < curr_game->getStackSize(); i++) {
+
+                Ellipse* ell = new Ellipse(point(150, (i * 15) + 10 ), stack[(curr_game->getStackSize() - 1) - i] * 10, 10);
+                ells.push_back(ell);
+                attach(ells.at(i));
+                ells.at(i).set_color(Color::red);
+
+
             // draw each pancake 
-            if (i >= flipFrom) {
-                //draw pancake with different color
+                if (i >= flipFrom) {
+                    //draw pancake with different color
+                    ells.at(i).set_color(Color::blue);
             }
+        }
+
+
+        }
+
+        else {
+
+            for (int i = 0; i < curr_game->getStackSize(); i++) {
+
+                Ellipse* ell = new Ellipse(point(150, (i * 15) + 10 ), stack[(curr_game->getStackSize() - 1) - i] * 10, 10);
+                ells.push_back(ell);
+                attach(ells.at(i));
+                ells.at(i).set_color(Color::red);
+
+
+            // draw each pancake 
+                if (i >= flipFrom) {
+                    //draw pancake with different color
+                    ells.at(i).set_color(Color::blue);
+            }
+
         }
     }
 
