@@ -19,7 +19,6 @@ void Start_screen::getSplashInput(){
 	//runs the two screens
 	splashScreen();
 	instructionScreen();
-
 	
 }
 void Start_screen::splashScreen(){
@@ -49,7 +48,6 @@ void Start_screen::splashScreen(){
 	detach(first);
 	text.clear();
 	buttonClick = false;
-
 }
 
 void Start_screen::instructionScreen(){
@@ -67,7 +65,7 @@ void Start_screen::instructionScreen(){
 	}
 	detach(second);
 	buttonClick = false;
-
+	
 }
 
 void Start_screen::button1(Address,Address pw)
@@ -87,13 +85,15 @@ void Start_screen::titles(){
 	Text title(Point(300,100),"Ultimate Pancake Flipper Simulator 2018");
 	title.set_font(Graph_lib::Font::helvetica_bold);
 	title.set_font_size(40);
+	title.set_color(Color::black);
 	text.push_back(&title);
 	attach(title);
 	
 	//team title
-	Text team(Point(850,200),"**** Team 13 ****");
+	Text team(Point(675,200),"**** Team 13: Pretty Pancake ****");
 	team.set_font(Graph_lib::Font::helvetica_bold);
 	team.set_font_size(30);
+	team.set_color(Color::black);
 	text.push_back(&team);
 	attach(team);
 	
@@ -101,6 +101,7 @@ void Start_screen::titles(){
 	Text members(Point(900,300),"Members:");
 	members.set_font(Graph_lib::Font::helvetica_bold);
 	members.set_font_size(30);
+	members.set_color(Color::black);
 	text.push_back(&members);
 	attach(members);
 	
