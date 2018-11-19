@@ -37,11 +37,13 @@ struct Difficulty_window : Graph_lib::Window {
     
 private:
     int n, d;
+	
 	In_box input_n;
 	In_box input_d;
+	Text invalid_input;
 	Button submit_button;
     bool running;
-	Text invalid_input;
+	
 	
 	static void cb_submit(Address, Address pw){reference_to<Difficulty_window>(pw).submit();}
     void submit(){
