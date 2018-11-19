@@ -113,60 +113,62 @@
 
 		
 
-	   return finalStack;
+			return finalStack;
 
 	   
-	}
+		}
 
-	int* gen_rand_stack(int* stack, int stackSize) {
+		int* gen_rand_stack(int* stack, int stackSize) {
 
-		bool not_shuffled = true;
-		 int* resultStack = stack; 
-		while(not_shuffled){
-			std::default_random_engine randomEngine(std::time(nullptr));            //random engine for running shuffle function
-			std::shuffle(&stack[0], &stack[stackSize], randomEngine);               //shuffle the stack
+			bool not_shuffled = true;
+			int* resultStack = stack; 
+			while(not_shuffled){
+				std::default_random_engine randomEngine(std::time(nullptr));            //random engine for running shuffle function
+				std::shuffle(&stack[0], &stack[stackSize], randomEngine);               //shuffle the stack
 
-			for(int i =0; i<stackSize; i++)
-			{
-				if(stack[i]!=(stackSize-i)){
-					not_shuffled = true;
+				for(int i =0; i<stackSize; i++)
+				{
+					if(stack[i]!=(stackSize-i)){
+						not_shuffled = true;
+					}
+
+					else{
+
+						not_shuffled = false; 
+
+					}
 				}
 
-				else{
+			}	
 
-					not_shuffled = false; 
+			return resultStack;
 
-				}
+		}
+		
+		private:
+
+			In_box input_order;
+			Button submit_button;
+			Button random_button;
+			
+			bool running;
+			string order;
+			bool ran = false;
+		
+			static void cb_submit(Address, Address pw){reference_to<SetOrder_window>(pw).submit();}
+			
+			void submit(){
+				order = input_order.get_string();
+				ran = false;
+				running = false;
 			}
-
-		}
-
-		return resultStack;
-
-	}
 		
-	private:
-
-		Button submit_button;
-		Button random_button;
-		In_box input_order;
-		bool running;
-		string order;
-		bool ran = false;
-		
-		static void cb_submit(Address, Address pw){reference_to<SetOrder_window>(pw).submit();}
-		void submit(){
-			order = input_order.get_string();
-			ran = false;
-			running = false;
-		}
-		
-		static void cb_random(Address, Address pw){reference_to<SetOrder_window>(pw).random();}
-		void random(){
-			ran = true;
-			running = false;
-		}
+			static void cb_random(Address, Address pw){reference_to<SetOrder_window>(pw).random();}
+			void random(){
+				ran = true;
+				running = false;
+			}
 		
 		
 
-	};
+};

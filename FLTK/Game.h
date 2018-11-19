@@ -13,6 +13,7 @@ Game.h - Interface for the Game class
 #define __GAME__
 
 #define string string
+using namespace std;
 
 /************************************************
  *  INCLUDES
