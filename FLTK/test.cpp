@@ -1,4 +1,5 @@
 #include "Start_screen.h"
+#include "Game.h"
 #include "score_screen.cpp"
 #include "initials_screen.cpp"
 #include <iostream>
@@ -65,15 +66,14 @@ void scoreTest() {
 	const int WINDOW_WIDTH = 1280;
     const int WINDOW_HEIGHT = 720;
 	vector<string> scores;
-	int newscore = 0;
 	string winner = "Sorry, the AI won!";
 	
 	for (int i = 0; i<5; i++) {
 		scores.push_back("AA 00");
 	}
-	
-	
-	Game * currGame = new Game(numOfPancakes,difficulty,"scores.txt",gameStack);
+	int num = 5;
+	int* num1 = &num;
+	Game * currGame = new Game(5,5,"testscores.txt",num1);
 	
 	//initials and score windows
 	Initial_window initials_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
@@ -81,11 +81,24 @@ void scoreTest() {
 	currGame->username = initials;
 	currGame->writeScore();
 	
+	string resp1;
+	string resp2;
+	
+	cout << "Were you able to write your initials? (y/n) ";
+	cin >> resp1;
+	if (resp1 == "y") { cout << "test1: PASS" << endl; }
+	else { cout << "test1: FAIL" << endl; }
+	
 	Score_window score_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
-	playagain = score_window.show_scores(currGame->getHighScores(),"Sorry, the AI won!");
+	bool playagain = score_window.show_scores(currGame->getHighScores(),"Game Over");
+	
+	cout << "Were you able to see your initials and score? (y/n) ";
+	cin >> resp2;
+	if (resp2 == "y") { cout << "test2: PASS" << endl << endl; }
+	else { cout << "test2: FAIL" << endl << endl; }
 	
 	cout << "Initials: " << initials << endl;
-	cout << "Continue: " << cont << endl;	
+	cout << "Continue: " << playagain << endl;	
 }
 
 int main(){
