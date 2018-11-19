@@ -21,19 +21,20 @@ using namespace Graph_lib;
 struct Start_screen : Graph_lib::Window {
 	Start_screen(Point xy, int w, int h, const string& title );
 	void getSplashInput();//called from outside class to run screen
+	void splashScreen();
+	void instructionScreen();
 	
 	private:
 	bool buttonClick;
 	vector<Text*> text;
 	
 	//Splash Screen
-	void splashScreen();
 	void titles();
 	void members1();
 	void members2();
 	
 	//Instructions Screen
-	void instructionScreen();
+
 	void instructionTitles();
 	void goalStatment();
 	void instructionStatements1();

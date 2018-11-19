@@ -19,7 +19,7 @@ void Start_screen::getSplashInput(){
 	//runs the two screens
 	splashScreen();
 	instructionScreen();
-	hide();
+
 	
 }
 void Start_screen::splashScreen(){
@@ -49,6 +49,7 @@ void Start_screen::splashScreen(){
 	detach(first);
 	text.clear();
 	buttonClick = false;
+
 }
 
 void Start_screen::instructionScreen(){
@@ -66,7 +67,7 @@ void Start_screen::instructionScreen(){
 	}
 	detach(second);
 	buttonClick = false;
-	
+
 }
 
 void Start_screen::button1(Address,Address pw)
@@ -159,6 +160,7 @@ void Start_screen::run(){
 //shows screen and waits for the button to be clicked
 	show();
 	while (!buttonClick){Fl::wait();}
+	hide();
 	Fl::redraw();
 }
 
