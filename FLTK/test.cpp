@@ -1,4 +1,6 @@
 #include "Start_screen.h"
+#include "score_screen.cpp"
+#include "initials_screen.cpp"
 #include <iostream>
 #include <string>
 
@@ -59,9 +61,35 @@ void InstructionTest(){
 	window.hide();
 }
 
+void scoreTest() {
+	const int WINDOW_WIDTH = 1280;
+    const int WINDOW_HEIGHT = 720;
+	vector<string> scores;
+	int newscore = 0;
+	string winner = "Sorry, the AI won!";
+	
+	for (int i = 0; i<5; i++) {
+		scores.push_back("AA 00");
+	}
+	
+	
+	Game * currGame = new Game(numOfPancakes,difficulty,"scores.txt",gameStack);
+	
+	//initials and score windows
+	Initial_window initials_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	string initials = initials_window.wait_for_button(currGame->getScore());
+	currGame->username = initials;
+	currGame->writeScore();
+	
+	Score_window score_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	playagain = score_window.show_scores(currGame->getHighScores(),"Sorry, the AI won!");
+	
+	cout << "Initials: " << initials << endl;
+	cout << "Continue: " << cont << endl;	
+}
 
 int main(){
 	SplashTest();
 	InstructionTest();
-	
+	scoreTest();
 }

@@ -5,6 +5,8 @@
 #include "SetOrder_window.cpp"
 #include "Game_window.cpp"
 #include "Game.h"
+#include "initials_screen.cpp"
+#include "score_screen.cpp"
 //#include "Game_window.cpp"
 //#include "InputName_window.cpp"
 //#include "GameOver_window.cpp"
@@ -27,12 +29,12 @@ int main()
 	bool run = true;
 	start(run);
 	
-	// bool playagain = false;
-	// do{
-		// start(playagain);
-	// }while(playagain);
+	bool playagain = false;
+	do{
+		start(playagain);
+	}while(playagain);
 
-    // return 0;
+    return 0;
 }
 void start(bool &playagain)
 {
@@ -48,12 +50,20 @@ void start(bool &playagain)
 	SetOrder_window set_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	gameStack = set_window.wait_for_button(numOfPancakes);
 
-	Game * currGame;
-	currGame = new Game(numOfPancakes,difficulty,"highscores.txt",gameStack);
+	Game * currGame = new Game(numOfPancakes,difficulty,"scores.txt",gameStack);
 
 	// game window
 	Game_window game_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	game_window.wait_for_button(gameStack);
+	
+	//initials and score windows
+	Initial_window initials_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	string initials = initials_window.wait_for_button(currGame->getScore());
+	currGame->username = initials;
+	currGame->writeScore();
+	
+	Score_window score_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	playagain = score_window.show_scores(currGame->getHighScores(),"Sorry, the AI won!");
 
 	// //Select difficulty window and store in string difficulty
     // string difficulty = "";
