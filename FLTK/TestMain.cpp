@@ -26,8 +26,8 @@ int main()
 	window.getSplashInput();
     //window.wait_for_button();
     
-	bool run = true;
-	start(run);
+	//bool run = true;
+	//start(run);
 	
 	bool playagain = false;
 	do{
@@ -63,7 +63,7 @@ void start(bool &playagain)
 	currGame->writeScore();
 	
 	score_screen score_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
-	playagain = score_window.show_scores(currGame->getHighScores(),"Sorry, the AI won!");
+	playagain = score_window.show_scores(currGame->getHighScores(),"Game Over");
 
 	// //Select difficulty window and store in string difficulty
     // string difficulty = "";
