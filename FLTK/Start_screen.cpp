@@ -230,7 +230,7 @@ void Start_screen::instructionStatements1(){
 	text.push_back(&instruct2);
 	attach(instruct2);
 	
-	Text instruct3(Point(150,370),"3. When prompted enter your initials so that your score can be saved.");
+	Text instruct3(Point(150,610),"6. When prompted enter your initials so that your score can be saved.");
 	instruct3.set_font(Graph_lib::Font::helvetica);
 	instruct3.set_font_size(27);
 	text.push_back(&instruct3);
@@ -242,19 +242,19 @@ void Start_screen::instructionStatements1(){
 
 void Start_screen::instructionStatements2(){
 //prints instructions to the screen
-	Text instruct4(Point(150,410),"4. Use the arrow keys to move the arrow next to the left stack of pancakes");
+	Text instruct4(Point(150,370),"3. Use the arrow keys to move the arrow next to the left stack of pancakes");
 	instruct4.set_font(Graph_lib::Font::helvetica);
 	instruct4.set_font_size(27);
 	text.push_back(&instruct4);
 	attach(instruct4);
 	
-	Text instruct5(Point(150,450),"   to the lowest pancake in the stack you want to flip. That pancake and the");
+	Text instruct5(Point(150,410),"   to the lowest pancake in the stack you want to flip. That pancake and the");
 	instruct5.set_font(Graph_lib::Font::helvetica);
 	instruct5.set_font_size(27);
 	text.push_back(&instruct5);
 	attach(instruct5);
 	
-	Text instruct6(Point(150,490),"   ones above it will flip, ending your turn.");
+	Text instruct6(Point(150,450),"   ones above it will flip, ending your turn.");
 	instruct6.set_font(Graph_lib::Font::helvetica);
 	instruct6.set_font_size(27);
 	text.push_back(&instruct6);
@@ -266,19 +266,19 @@ void Start_screen::instructionStatements2(){
 
 void Start_screen::instructionStatements3(){
 //prints instructions to the screen
-	Text instruct7(Point(150,530),"5. The computer will take its turn.");
+	Text instruct7(Point(150,490),"4. The computer will take its turn.");
 	instruct7.set_font(Graph_lib::Font::helvetica);
 	instruct7.set_font_size(27);
 	text.push_back(&instruct7);
 	attach(instruct7);
 	
-	Text instruct8(Point(150,570),"6. Steps 1-5 will be repeated until either you or the computer has sorted their");
+	Text instruct8(Point(150,530),"5. Steps 1-4 will be repeated until either you or the computer has sorted their");
 	instruct8.set_font(Graph_lib::Font::helvetica);
 	instruct8.set_font_size(27);
 	text.push_back(&instruct8);
 	attach(instruct8);
 	
-	Text instruct9(Point(150,610),"   stack of pancakes.");
+	Text instruct9(Point(150,570),"   stack of pancakes.");
 	instruct9.set_font(Graph_lib::Font::helvetica);
 	instruct9.set_font_size(27);
 	text.push_back(&instruct9);
