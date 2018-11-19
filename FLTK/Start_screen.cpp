@@ -19,6 +19,7 @@ void Start_screen::getSplashInput(){
 	//runs the two screens
 	splashScreen();
 	instructionScreen();
+	hide();
 	
 }
 void Start_screen::splashScreen(){
