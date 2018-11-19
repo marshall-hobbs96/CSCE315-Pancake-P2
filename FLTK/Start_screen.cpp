@@ -117,7 +117,7 @@ void Start_screen::members1(){
 	text.push_back(&member4);
 	attach(member4);
 	
-	Text member5(Point(750,500),"Jevika Jarmarwala");
+	Text member5(Point(750,500),"Jeevika Jarmarwala");
 	member5.set_font(Graph_lib::Font::helvetica_bold);
 	member5.set_font_size(25);
 	text.push_back(&member5);
