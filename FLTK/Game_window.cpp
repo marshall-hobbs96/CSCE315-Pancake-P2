@@ -2,6 +2,7 @@
 
 #include "GUI.h"
 #include "Graph.h"
+#include <vector>
 #include "FL/Fl_JPEG_Image.H"
 #include "std_lib_facilities_5.h"
 
@@ -11,15 +12,33 @@ struct Game_window : Graph_lib::Window {
     
     Game_window(Point xy, int w, int h, const string& title) :
         Window(xy,w,h,title),
-		input_order(Point(400,400),50,20,"SET ORDER: "),
 		submit_button(Point(int(x_max()/2)-200,y_max()-200), 400, 100, "Submit", cb_submit),
         running(true)
     {
-		attach(input_order);
 		attach(submit_button);
     }
-    void wait_for_button(int* humanStack, int* AIStack)
+    void wait_for_button(int* gameStack)
     {
+        Text title(Point(450,75),"Game Window!");
+        title.set_font(Graph_lib::Font::helvetica_bold);
+        title.set_font_size(30);
+        attach(title);
+
+        Ellipse el1(Point(200,200),40,40);
+        el1.set_fill_color(Color::red);
+
+        Ellipse el2(Point(300,200),40,40);
+        el2.set_fill_color(Color::blue);
+        
+        Ellipse el3(Point(400,200),40,40);
+        el3.set_fill_color(Color::green);
+
+        attach(el1);
+        attach(el2);
+        attach(el3);
+
+        drawPancakes(gameStack);
+        
         while(running) Fl::wait(0);
         hide();
     }
@@ -27,7 +46,6 @@ struct Game_window : Graph_lib::Window {
 private:
 
 	Button submit_button;
-	In_box input_order;
     bool running;
 	
 	
@@ -35,5 +53,8 @@ private:
     void submit(){
 		running = false;
 	}
+
+    void drawPancakes(int* stack){
+    }
 
 };

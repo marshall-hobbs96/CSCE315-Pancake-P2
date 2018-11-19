@@ -1,7 +1,10 @@
 #include "Start_screen.h"
 #include <FL/Fl_Text_Display.H>
+#include "Start_screen.cpp"
 #include "Difficulty_window.cpp"
 #include "SetOrder_window.cpp"
+#include "Game_window.cpp"
+#include "Game.h"
 //#include "Game_window.cpp"
 //#include "InputName_window.cpp"
 //#include "GameOver_window.cpp"
@@ -39,13 +42,18 @@ void start(bool &playagain)
 	// select difficulty
 	Difficulty_window diff_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	diff_window.wait_for_button(numOfPancakes, difficulty);
-	int playerStack[numOfPancakes];
-	int AIStack[numOfPancakes];
 	
+	// set order
+	int *gameStack;
 	SetOrder_window set_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
-	set_window.wait_for_button(playerStack, AIStack);
+	gameStack = set_window.wait_for_button(numOfPancakes);
 
-	Game_play_window playGame(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	Game * currGame;
+	currGame = new Game(numOfPancakes,difficulty,"highscores.txt",gameStack);
+
+	// game window
+	Game_window game_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	game_window.wait_for_button(gameStack);
 
 	// //Select difficulty window and store in string difficulty
     // string difficulty = "";
@@ -73,4 +81,10 @@ void start(bool &playagain)
 	
 	cout << "numOfPancakes = " << numOfPancakes << endl;
 	cout << "difficulty = " << difficulty << endl;
+	
+	for (int i = 0; i < numOfPancakes; i++)
+	{
+		cout << "P: " << gameStack[i] << endl;
+	}
+	
 }
