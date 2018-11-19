@@ -45,6 +45,8 @@ void start(bool &playagain)
 	SetOrder_window set_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	set_window.wait_for_button(playerStack, AIStack);
 
+	Game_play_window playGame(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+
 	// //Select difficulty window and store in string difficulty
     // string difficulty = "";
     // Difficulty_window diff_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "POOZLE!");
