@@ -62,7 +62,7 @@ public:
 
     // For when the game is over:
     int computeScore(int diff, int n, int* userS, int* aiS);
-    std::string getHighScores();
+    vector<string> getHighScores();
 
 	// For dealing with the high scores file
 	  void writeScore();

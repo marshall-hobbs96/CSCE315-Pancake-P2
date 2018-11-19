@@ -144,17 +144,17 @@ int Game::computeScore(int diff, int n, int* userS, int* aiS)
 	}
 }
 
-string Game::getHighScores() {
+vector<string> Game::getHighScores() {
 	ifstream scoreFile;
 	scoreFile.open(filename, fstream::in); //open file if it exists
-	string scores;
+	vector<string> scores;
 	if(scoreFile.is_open()){
 		for(int i=0; i<5; i++){
 			string name,score;
 			getline(scoreFile,name);
 			getline(scoreFile,score);
 			string line = name + " " + score;
-			scores = scores + "\n" + line;
+			scores.push_back(line);
 		}
 	}
 	scoreFile.close();
@@ -178,7 +178,7 @@ void Game::writeScore()
 	ofs.close();
 	if(scores[0][0] == ""){
 		ofstream fileWrite(filename, std::ios_base::app);
-		fileWrite<<username<<'\n'<<human_score<<'\n';
+		fileWrite<<username<<" "<<human_score;
 		fileWrite.close();
 	}
 	else{ //sort score into right place then write top 5 to file

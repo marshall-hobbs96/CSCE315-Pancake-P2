@@ -7,9 +7,9 @@
 
 using namespace Graph_lib;
 
-struct Score_window : Graph_lib::Window {
+struct score_screen : Graph_lib::Window {
     
-    Score_window(Point xy, int w, int h, const string& title) : // User chooses game difficulty in this window
+    score_screen(Point xy, int w, int h, const string& title) : // User chooses game difficulty in this window
         Window(xy,w,h,title),
 		restart_button(Point(int(x_max()/2)-250,y_max()-100), 200, 50, "Yes", cb_restart),
 		end_button(Point(int(x_max()/2)+100,y_max()-100), 200, 50, "No", cb_end),
@@ -67,13 +67,13 @@ private:
 	bool running;
 	
 	
-	static void cb_end(Address, Address pw){reference_to<Score_window>(pw).end();}
+	static void cb_end(Address, Address pw){reference_to<score_screen>(pw).end();}
     void end(){
 		screen = false;
 		running = false;
 	}
 	
-	static void cb_restart(Address, Address pw){reference_to<Score_window>(pw).restart();}
+	static void cb_restart(Address, Address pw){reference_to<score_screen>(pw).restart();}
     void restart(){
 		screen = false;
 		running = true;

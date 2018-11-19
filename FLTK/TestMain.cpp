@@ -62,7 +62,7 @@ void start(bool &playagain)
 	currGame->username = initials;
 	currGame->writeScore();
 	
-	Score_window score_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	score_screen score_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	playagain = score_window.show_scores(currGame->getHighScores(),"Sorry, the AI won!");
 
 	// //Select difficulty window and store in string difficulty
