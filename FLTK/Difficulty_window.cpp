@@ -2,6 +2,7 @@
 
 #include "GUI.h"
 #include "Graph.h"
+#include "FL/fl_ask.h"
 #include "FL/Fl_JPEG_Image.H"
 #include "std_lib_facilities_5.h"
 
@@ -13,6 +14,7 @@ struct Difficulty_window : Graph_lib::Window {
         Window(xy,w,h,title),
 		input_n(Point(400,200),50,20,"Please enter number of pancakes (2-9): "),
 		input_d(Point(900,200),50,20,"Please enter difficulty (1-n): "),
+		invalid_input(Point(500,300),"INVALID INPUT!"),
 		submit_button(Point(int(x_max()/2)-200,y_max()-200), 400, 100, "Submit", cb_submit),
         running(true)
     {
@@ -39,7 +41,7 @@ private:
 	In_box input_d;
 	Button submit_button;
     bool running;
-	
+	Text invalid_input;
 	
 	static void cb_submit(Address, Address pw){reference_to<Difficulty_window>(pw).submit();}
     void submit(){
@@ -47,8 +49,7 @@ private:
 		d = input_d.get_int();
 
 		if(n < 2 || n > 9 || d < 1 || d > n) {
-			// Text invalid_input(Point(500,200),"INVALID INPUT!"); // Causes SEGV fault, need to figure out why.
-            // attach(invalid_input);
+			fl_alert("Invalid Input!\nPlease make sure number of pancakes is a value between 2 and 9\nand difficulty is between 1 and n, (the number of pancakes)");
 			cout << "Invalid input!" << endl;
 			running = true;
 		}
