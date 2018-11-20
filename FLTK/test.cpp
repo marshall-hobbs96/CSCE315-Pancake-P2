@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "score_screen.cpp"
 #include "initials_screen.cpp"
+#include "Difficulty_window.cpp"
 #include "SetOrder_window.cpp"
 #include <iostream>
 #include <string>
@@ -62,6 +63,37 @@ void InstructionTest(){
 	else{cout<<"FAIL"<<endl<<endl;}
 	window.hide();
 }
+void getDifficultyTest(){
+	int n, d;
+	int *gameStack;
+	
+	string statement1 = "Enter invalid number of pancakes such as 12 and click submit\n";
+	string statement2 = "Then enter another invalid combo such as 5 pancakes and difficulty 7\n";
+	string statement3 = "Finally enter valid values such as 6 pancakes and difficulty 4\n";
+	string question = "\nDid 2 error messages pop up and the valid values get printed to the terminal? (y/n) ";
+	string answer = "n";
+	
+	cout << statement1 << statement2 << statement3;
+	Difficulty_window window(Point(200, 200), 1280, 720, "Pancake!");
+	window.wait_for_button(n, d);
+	
+	cout << "Number of pancakes: " << n << endl;
+	cout << "Difficulty: " << d << endl;
+	
+	cout << question ;
+	cin >> answer;
+	
+	cout<<"Get Difficulty Screen Test: ";
+	if(answer == "y"){cout<<"PASS";}
+	else{cout<<"FAIL!";}
+	
+	cout << endl << endl;
+	
+	window.hide();
+
+	
+}
+
 void setOrderTest(){
 	
 	const int WINDOW_WIDTH = 1280;
@@ -150,6 +182,8 @@ void scoreTest() {
 int main(){
 	SplashTest();
 	InstructionTest();
-	scoreTest();
+	getDifficultyTest();
 	setOrderTest();
+	scoreTest();
+	
 }
