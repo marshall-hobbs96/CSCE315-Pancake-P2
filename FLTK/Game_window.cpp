@@ -67,7 +67,6 @@ struct Game_window : Graph_lib::Window {
         Ellipse** ellsAI = new Ellipse*[9];
         Text** AINums = new Text*[9];
 
-        cout << curr_selection << endl;
 
         
 
@@ -77,9 +76,12 @@ struct Game_window : Graph_lib::Window {
         show();
         while(!p_selected) {
             //cout << "in loop" << endl;
-            human_selection = curr_selection - 1;
             Fl::wait();
         }
+
+        human_selection = curr_selection - 1;
+
+        cout << "curr selection: " << curr_selection << endl;
         //Fl::wait();
         p_selected = true;
         Fl::redraw();
@@ -96,7 +98,9 @@ struct Game_window : Graph_lib::Window {
         }
 
         drawPancakes(curr_game->getHumanStack(), ellsHuman, humanNums, curr_game->getStackSize(), true, humanFlip);
-        curr_game->moveHuman(human_selection);
+        curr_game->moveHuman(humanFlip - 1);
+
+        cout << "Human selection: " << human_selection << endl;
 
         for(int j = 0; j < curr_game->getStackSize(); j++){
 
@@ -107,6 +111,12 @@ struct Game_window : Graph_lib::Window {
 
         }
         cout << "before" << endl;
+        int* temp_stack = curr_game->getHumanStack();
+        for(int k = 0; k < curr_game->getStackSize(); k ++) {
+
+            cout << temp_stack[k] << endl;
+
+        }
 
         drawPancakes(curr_game->getHumanStack(), ellsHuman, humanNums, curr_game->getStackSize(), true, -1);
         
@@ -183,11 +193,13 @@ private:
 
         int* stack = new int[9];
 
-        for(int j = 0; j < stack_size; j++){
+        /*for(int j = 0; j < stack_size; j++){
 
             stack[j] = input_stack[stack_size - 1 - j];
 
-        }
+        }*/
+
+        std::reverse(std::begin(stack), std::end(stack));
 
         if(player == true){             //drawing player stack
             for(int i = 0; i < stack_size; i++) {
