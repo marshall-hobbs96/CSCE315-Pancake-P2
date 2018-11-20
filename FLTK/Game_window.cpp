@@ -70,13 +70,19 @@ struct Game_window : Graph_lib::Window {
         cout << curr_selection << endl;
 
         
+
         drawPancakes(curr_game->getHumanStack(), ellsHuman, humanNums, curr_game->getStackSize(), true, -1);
         drawPancakes(curr_game->getAIStack(), ellsAI, AINums, curr_game->getStackSize(), false, -1);
         int human_selection = -1;
-
+        show();
         while(!p_selected) {
-            human_selection = curr_selection;
+            //cout << "in loop" << endl;
+            human_selection = curr_selection - 1;
+            Fl::wait();
         }
+        //Fl::wait();
+        p_selected = true;
+        Fl::redraw();
 
         int humanFlip = curr_game->getStackSize() - human_selection;
 
@@ -100,9 +106,11 @@ struct Game_window : Graph_lib::Window {
             delete humanNums[j];
 
         }
+        cout << "before" << endl;
 
-        drawPancakes(curr_game->getAIStack(), ellsHuman, humanNums, curr_game->getStackSize(), true, -1);
-
+        drawPancakes(curr_game->getHumanStack(), ellsHuman, humanNums, curr_game->getStackSize(), true, -1);
+        
+        cout << "after" << endl;
 
 
         int AI_selection = curr_game->getAIMove();
@@ -148,6 +156,7 @@ struct Game_window : Graph_lib::Window {
         //add return win condition from curr_game++++++++++++++++++++++++++
 
         hide();
+        return false;
     }
     
 private:
