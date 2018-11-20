@@ -24,15 +24,15 @@ struct Game_window : Graph_lib::Window {
 
         vector<Button*>cake_buttons;
 
-        Button* p1 = new Button(Point(300, 150), 60, 40, "-->",button1);
-        Button* p2 = new Button(Point(300, 210), 60, 40, "-->",button2);
-        Button* p3 = new Button(Point(300, 270), 60, 40, "-->",button3);
-        Button* p4 = new Button(Point(300, 330), 60, 40, "-->",button4);
-        Button* p5 = new Button(Point(300, 390), 60, 40, "-->",button5);
-        Button* p6 = new Button(Point(300, 450), 60, 40, "-->",button6);
-        Button* p7 = new Button(Point(300, 510), 60, 40, "-->",button7);
-        Button* p8 = new Button(Point(300, 570), 60, 40, "-->",button8);
-        Button* p9 = new Button(Point(300, 630), 60, 40, "-->",button9);
+        Button* p1 = new Button(Point(150, 120), 60, 40, "-->",button1);
+        Button* p2 = new Button(Point(150, 180), 60, 40, "-->",button2);
+        Button* p3 = new Button(Point(150, 240), 60, 40, "-->",button3);
+        Button* p4 = new Button(Point(150, 300), 60, 40, "-->",button4);
+        Button* p5 = new Button(Point(150, 360), 60, 40, "-->",button5);
+        Button* p6 = new Button(Point(150, 420), 60, 40, "-->",button6);
+        Button* p7 = new Button(Point(150, 480), 60, 40, "-->",button7);
+        Button* p8 = new Button(Point(150, 540), 60, 40, "-->",button8);
+        Button* p9 = new Button(Point(150, 600), 60, 40, "-->",button9);
 
         cake_buttons.push_back(p1);
         cake_buttons.push_back(p2);

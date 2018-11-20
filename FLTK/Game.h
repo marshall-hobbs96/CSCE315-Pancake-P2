@@ -22,6 +22,7 @@ using namespace std;
 #include "Player.h"
 #include "AI.h"
 #include <string>
+#include <stdlib.h>
 
 /************************************************
  * Main Class

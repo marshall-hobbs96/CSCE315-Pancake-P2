@@ -38,7 +38,7 @@ void Player::makeMove(int pancake) {
     if (pancakes_to_flip >= 1) {
 
         // For each of the pancakes above the spatula
-        for (int i = pancake; i < pancake + (pancakes_to_flip/2) + 1; i++) {
+        for (int i = pancake; i <= pancake + (pancakes_to_flip/2) + 1; i++) {
             swapPancakes(i, stack_size - i + pancake - 1);
         }
     }
