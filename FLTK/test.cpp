@@ -4,6 +4,7 @@
 #include "initials_screen.cpp"
 #include "Difficulty_window.cpp"
 #include "SetOrder_window.cpp"
+#include "Game_window.cpp"
 #include <iostream>
 #include <string>
 
@@ -179,11 +180,46 @@ void scoreTest() {
 	cout << "Continue: " << playagain << endl;	
 }
 
+
+void gameWindowTest() {
+	const int WINDOW_WIDTH = 1280;
+    const int WINDOW_HEIGHT = 720;
+	int testArr[5]= {2,1,3,4,5};
+	Game * currGame = new Game(5,3,"testScores.txt",testArr);
+	bool game_won = false;
+	while(game_won == false){
+		Game_window game_window(Point(50, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!", currGame);
+		game_won = game_window.wait_for_button();
+	}
+
+	string statement1 = "Play game as normal to win. Flip using arrow buttons.\n";
+	string question = "\nDid the pancakes flip as expected, and did the game quit when expected? (y/n) ";
+	string answer = "n";
+	
+	cout << statement1;
+	
+	cout << question ;
+	cin >> answer;
+	
+	cout<<"Game window Screen Test: ";
+	if(answer == "y"){cout<<"PASS";}
+	else{cout<<"FAIL!";}
+	
+	cout << endl << endl;
+	
+
+	
+}
+
+
 int main(){
+	/*
 	SplashTest();
 	InstructionTest();
 	getDifficultyTest();
 	setOrderTest();
 	scoreTest();
+	*/
+	gameWindowTest();
 	
 }
