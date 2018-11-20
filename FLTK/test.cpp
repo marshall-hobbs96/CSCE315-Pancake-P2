@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "score_screen.cpp"
 #include "initials_screen.cpp"
+#include "SetOrder_window.cpp"
 #include <iostream>
 #include <string>
 
@@ -61,6 +62,51 @@ void InstructionTest(){
 	else{cout<<"FAIL"<<endl<<endl;}
 	window.hide();
 }
+void setOrderTest(){
+	
+	const int WINDOW_WIDTH = 1280;
+    const int WINDOW_HEIGHT = 720;
+	int *gameStack;
+	int numOfPancakes;
+	cout << "Enter the number of pancakes: ";
+	cin >> numOfPancakes;
+	
+	string statements[3] = {"Enter the wrong number of pancakes like 4321 for 5 number of pancakes", "Enter the duplicate number of pancakes like 4421 for 5 number of pancakes", "Press random"};
+	string questions[3] = {"Was there an alert message that popped up? (y/n) ", "Was there an alert message that popped up? (y/n) ", "Did it print a random stack on the terminal? (y/n) "};
+	string answers[3] = {"n","n","n"};
+	for (int i = 0; i < 3; i++)
+	{
+		cout << statements[i] << endl;
+		SetOrder_window set_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+		gameStack = set_window.wait_for_button(numOfPancakes);
+		if (i == 2)
+		{
+			for (int i = 0; i < numOfPancakes; i++)
+			{
+				cout << gameStack[i];
+			}
+			cout << endl;
+			cout << questions[i] ;
+			cin >> answers[i];
+			break;
+		}
+		cout << questions[i] ;
+		cin >> answers[i];
+		set_window.hide();
+	}
+	
+	cout<<endl;
+	cout<<"Set Order Screen tests: " << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "Test " << i+1 << ": ";
+		if (answers[i] == "y")
+			cout << "PASS" << endl;
+		else 
+			cout << "FAIL" << endl;
+	}
+	
+}
 
 void scoreTest() {
 	const int WINDOW_WIDTH = 1280;
@@ -89,7 +135,7 @@ void scoreTest() {
 	if (resp1 == "y") { cout << "test1: PASS" << endl; }
 	else { cout << "test1: FAIL" << endl; }
 	
-	Score_window score_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
+	score_screen score_window(Point(150, 50), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	bool playagain = score_window.show_scores(currGame->getHighScores(),"Game Over");
 	
 	cout << "Were you able to see your initials and score? (y/n) ";
@@ -105,4 +151,5 @@ int main(){
 	SplashTest();
 	InstructionTest();
 	scoreTest();
+	setOrderTest();
 }
