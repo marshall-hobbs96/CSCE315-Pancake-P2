@@ -164,9 +164,9 @@ struct Game_window : Graph_lib::Window {
         }
 
         //add return win condition from curr_game++++++++++++++++++++++++++
-
+        bool win = curr_game->checkWin();
         hide();
-        return false;
+        return win;
     }
     
 private:
@@ -193,13 +193,12 @@ private:
 
         int* stack = new int[9];
 
-        /*for(int j = 0; j < stack_size; j++){
+        for(int j = 0; j < stack_size; j++){
 
             stack[j] = input_stack[stack_size - 1 - j];
 
-        }*/
+        }
 
-        std::reverse(std::begin(stack), std::end(stack));
 
         if(player == true){             //drawing player stack
             for(int i = 0; i < stack_size; i++) {
