@@ -218,7 +218,7 @@ void Start_screen::goalStatment(){
 
 void Start_screen::instructionStatements1(){
 //prints instructions to the screen
-	Text instruct1(Point(150,290),"1. When prompted Choose the number of pancakes you want to sort");
+	Text instruct1(Point(150,290),"1. When prompted choose the number of pancakes you want to sort.");
 	instruct1.set_font(Graph_lib::Font::helvetica);
 	instruct1.set_font_size(27);
 	text.push_back(&instruct1);
@@ -242,19 +242,19 @@ void Start_screen::instructionStatements1(){
 
 void Start_screen::instructionStatements2(){
 //prints instructions to the screen
-	Text instruct4(Point(150,370),"3. Use the arrow keys to move the arrow next to the left stack of pancakes");
+	Text instruct4(Point(150,370),"3. To file part of the your stack (left stack) of pancakes press the button");
 	instruct4.set_font(Graph_lib::Font::helvetica);
 	instruct4.set_font_size(27);
 	text.push_back(&instruct4);
 	attach(instruct4);
 	
-	Text instruct5(Point(150,410),"   to the lowest pancake in the stack you want to flip. That pancake and the");
+	Text instruct5(Point(150,410),"    with the arrow pointing to the lowest pancake in the stack you want to");
 	instruct5.set_font(Graph_lib::Font::helvetica);
 	instruct5.set_font_size(27);
 	text.push_back(&instruct5);
 	attach(instruct5);
 	
-	Text instruct6(Point(150,450),"   ones above it will flip, ending your turn.");
+	Text instruct6(Point(150,450),"    flip. That pancake and the ones above it will flip, ending your turn.");
 	instruct6.set_font(Graph_lib::Font::helvetica);
 	instruct6.set_font_size(27);
 	text.push_back(&instruct6);
