@@ -138,7 +138,7 @@ struct Game_window : Graph_lib::Window {
         }
 
         drawPancakes(curr_game->getAIStack(), ellsAI, AINums, curr_game->getStackSize(), false, AIFlip);
-        curr_game->moveAI(AI_selection);
+        curr_game->moveAI(AIFlip - 1);
 
 
 
