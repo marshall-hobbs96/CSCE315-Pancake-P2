@@ -53,9 +53,12 @@ void start(bool &playagain)
 	Game * currGame = new Game(numOfPancakes,difficulty,"scores.txt",gameStack);
 
 	// game window
-	Game_window game_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
-	game_window.wait_for_button(gameStack);
-	
+	bool game_won = false;
+
+	while(game_won == false){
+		Game_window game_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!", currGame);
+		game_won = game_window.wait_for_button();
+	}
 	//initials and score windows
 	Initial_window initials_window(Point(200, 200), WINDOW_WIDTH, WINDOW_HEIGHT, "Pancake!");
 	string initials = initials_window.wait_for_button(currGame->getScore());
