@@ -213,13 +213,11 @@ void gameWindowTest() {
 
 
 int main(){
-	/*
 	SplashTest();
 	InstructionTest();
 	getDifficultyTest();
 	setOrderTest();
 	scoreTest();
-	*/
 	gameWindowTest();
 	
 }
