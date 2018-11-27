@@ -1,10 +1,9 @@
 # def main():
 	# printTest('a')
 	
-def printTest(inarg, inarg2):
+def printTest(a, b):
 	print("Python script was called")
-	print(inarg)
-	print(inarg2)
+	print(a)
+	print(b)
 	return 5
-
 # main()

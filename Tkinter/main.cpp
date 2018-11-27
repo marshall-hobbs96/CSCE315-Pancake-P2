@@ -8,7 +8,7 @@ int main() {
 	// Set PYTHONPATH TO working directory
    setenv("PYTHONPATH",".",1);
 
-   PyObject *pName, *pModule, *pDict, *pFunc, *pValue, *presult;
+   PyObject *pName, *pModule, *pDict, *pFunc, *pValue, *pArgs, *presult;
 
 
    // Initialize the Python Interpreter
@@ -27,10 +27,17 @@ int main() {
 
    // pFunc is also a borrowed reference 
    pFunc = PyDict_GetItemString(pDict, (char*)"printTest");
+   
+   // make python tuple
+   pArgs = PyTuple_New(2);
+   pValue = PyInt_FromLong(2);
+   
+   PyTuple_SetItem(pArgs, 0, pValue);
+   PyTuple_SetItem(pArgs, 1, pValue);
 
    if (PyCallable_Check(pFunc))
    {
-       pValue=Py_BuildValue("(z)",(char*)"something",(char*)"something2");
+	   pValue=Py_BuildValue("ss","some1","some2");
        PyErr_Print();
        printf("Let's give this a shot!\n");
        presult=PyObject_CallObject(pFunc,pValue);
