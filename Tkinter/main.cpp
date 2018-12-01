@@ -10,7 +10,7 @@ int main() {
 	// // Set PYTHONPATH TO working directory
     setenv("PYTHONPATH",".",1);
 
-    PyObject *pName, *pModule, *pDict, *pFunc, *pValue, *presult;
+    PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pValue, *presult;
 
 
     // Initialize the Python Interpreter
@@ -18,7 +18,7 @@ int main() {
 
 
     // Build the name object
-    pName = PyString_FromString((char*)"script");
+    pName = PyString_FromString((char*)"functions");
 
     // Load the module object
     pModule = PyImport_Import(pName);
@@ -28,22 +28,25 @@ int main() {
 
 
     // pFunc is also a borrowed reference 
-    pFunc = PyDict_GetItemString(pDict, (char*)"printTest");
+    pFunc1 = PyDict_GetItemString(pDict, (char*)"splash");
+	pFunc2 = PyDict_GetItemString(pDict, (char*)"drawDifficultyWindow");
 	
-    if (PyCallable_Check(pFunc))
+    if (PyCallable_Check(pFunc1))
     {
 	    int value = 123;
-        pValue=Py_BuildValue("i",value);
+        //pValue=Py_BuildValue("i",value);
 		PyErr_Print();
         printf("Let's give this a shot!\n");
-        presult=PyObject_CallObject(pFunc,NULL);
+        presult = PyObject_CallObject(pFunc1,NULL);
+		pValue=Py_BuildValue("(O)",presult);
+		PyObject_CallObject(pFunc2,pValue);
         PyErr_Print();
     } else 
     {
        // PyErr_Print();
     }
-    printf("Result is %lu\n",PyInt_AsLong(presult));
-    Py_DECREF(pValue);
+    //printf("Result is %lu\n",PyInt_AsLong(presult));
+    //Py_DECREF(pValue);
 
     // Clean up
     Py_DECREF(pModule);
