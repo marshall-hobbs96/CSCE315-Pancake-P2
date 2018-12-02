@@ -1,6 +1,14 @@
 from Tkinter import *
 from PIL import ImageTk, Image
-numOfPancakes = -1
+
+
+def setND(w,n,d):
+	fd = open("param.dat","w")
+	fd.write(str(n))
+	fd.write(str(d))
+	fd.close
+	
+	w.pack_forget()
 
 def choosePancakes (w):
 	w.create_text(500,160,text="Select Number of Pancakes:",font=("Arial",20), anchor = NW)
@@ -16,19 +24,25 @@ def chooseDifficulty(w, n):
 	diffScale = Scale(w, from_ = 1, to = n, tickinterval = 1, length = 1000, orient=HORIZONTAL, sliderlength = 30, font=("Arial",25))
 	diffScale.place(x=150,y=500)
 	
+	submitB = Button(w, text="Submit", height=3, width=10, command=lambda:setND(w,n,diffScale.get()))
+	submitB.place(x=600,y=650)
+	
+	
 def drawDifficultyWindow(master):
-	#master = Tk()
+	global numOfPancakes
+	global difficulty
+	
 	w = Canvas(master, width=1280, height=720)
 	w.pack()
-
 	w.create_text(520,50,text="Set Your Difficulty!",font=("Arial",30), anchor = NW)
 	
 	choosePancakes(w)
-	
-	submitB = Button(w, text="Submit", height=3, width=10)
-	submitB.place(x=600,y=650)
-	
 	w.mainloop()
+	
+	fd = open("param.dat","r")
+	parameters = fd.readline()
+	return int(parameters)
+	
 
 def instructions(window):
 	wind_width = 1280
@@ -54,8 +68,8 @@ def splash():
 	button.configure(width = 20, height = 5)
 	c.create_window(1000,600, window = button)
 	pic = ImageTk.PhotoImage(Image.open("Pancake.jpg"))
-	c.create_image(0,0, image = pic, anchor= NW);
+	c.create_image(0,0, image = pic, anchor= NW)
 	window.mainloop()	
 	c.pack_forget()
-	instructions(window);
+	instructions(window)
 	

@@ -10,8 +10,8 @@ int main() {
 	// // Set PYTHONPATH TO working directory
     setenv("PYTHONPATH",".",1);
 
-    PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pValue, *presult;
-
+    PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pValue, *presult, *pValue2, *presult2;
+	int ND, numOfPancakes, difficulty;
 
     // Initialize the Python Interpreter
     Py_Initialize();
@@ -36,17 +36,30 @@ int main() {
 	    int value = 123;
         //pValue=Py_BuildValue("i",value);
 		PyErr_Print();
-        printf("Let's give this a shot!\n");
+        printf("Loading . . .!\n");
+		
         presult = PyObject_CallObject(pFunc1,NULL);
 		pValue=Py_BuildValue("(O)",presult);
-		PyObject_CallObject(pFunc2,pValue);
+		
+		presult2 = PyObject_CallObject(pFunc2,pValue);
+		pValue2=Py_BuildValue("(O)",presult2);
+		
         PyErr_Print();
     } else 
     {
        // PyErr_Print();
     }
-    //printf("Result is %lu\n",PyInt_AsLong(presult));
-    //Py_DECREF(pValue);
+    ND = PyInt_AsLong(presult2);
+	difficulty = ND % 10;
+	ND -= difficulty;
+	numOfPancakes = ND / 10;
+	
+	cout << "numOfPancakes: " << numOfPancakes << endl;
+	cout << "difficulty: " << difficulty << endl;
+	
+	
+	// printf("Result is %lu\n",PyInt_AsLong(presult2));
+    // Py_DECREF(pValue);
 
     // Clean up
     Py_DECREF(pModule);
