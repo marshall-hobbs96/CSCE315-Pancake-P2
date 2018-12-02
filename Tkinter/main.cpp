@@ -36,7 +36,7 @@ int main() {
 	    int value = 123;
         //pValue=Py_BuildValue("i",value);
 		PyErr_Print();
-        printf("Loading . . .!\n");
+        printf("Loading . . .\n");
 		
         presult = PyObject_CallObject(pFunc1,NULL);
 		pValue=Py_BuildValue("(O)",presult);

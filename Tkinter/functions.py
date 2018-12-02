@@ -16,10 +16,11 @@ def choosePancakes (w):
 	pancakeScale = Scale(w, from_ = 2, to = 9, tickinterval = 1, length = 1000, orient=HORIZONTAL, sliderlength = 30, font=("Arial",25))
 	pancakeScale.place(x=150,y=200)
 	
-	nextB = Button(w, text="Next", command=lambda:chooseDifficulty(w, pancakeScale.get()), height=3, width=10)
+	nextB = Button(w, text="Next", command=lambda:chooseDifficulty(w, pancakeScale, pancakeScale.get()), height=3, width=10)
 	nextB.place(x=600,y=350)	
 	
-def chooseDifficulty(w, n):
+def chooseDifficulty(w,p,n):
+	p.config(state=DISABLED,takefocus=0) # locks numOfPancakes input to avoid invalid values
 	w.create_text(500,460,text="Select Difficulty:",font=("Arial",20), anchor = NW)
 	diffScale = Scale(w, from_ = 1, to = n, tickinterval = 1, length = 1000, orient=HORIZONTAL, sliderlength = 30, font=("Arial",25))
 	diffScale.place(x=150,y=500)
@@ -59,7 +60,7 @@ def instructions(window):
 def splash():
 	sys.argv = ["Main"]
 	window = Tk()
-	window.title("PANCAKES!!!!!!!!!!!!")
+	window.title("Pretty Pancake!")
 	wind_width = 1280
 	wind_height = 720
 	c = Canvas(window, width = wind_width, height = wind_height)
@@ -69,6 +70,7 @@ def splash():
 	c.create_window(1000,600, window = button)
 	pic = ImageTk.PhotoImage(Image.open("Pancake.jpg"))
 	c.create_image(0,0, image = pic, anchor= NW)
+	print("Running. Use graphics window to play.")
 	window.mainloop()	
 	c.pack_forget()
 	instructions(window)
