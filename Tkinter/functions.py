@@ -255,4 +255,8 @@ def splash():
 	splash_text(c)
 	window.mainloop()	
 	c.pack_forget()
-	instructions(window)	
+	return window
+	
+def start():
+	window = splash()
+	instructions(window)
