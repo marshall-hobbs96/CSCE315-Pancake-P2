@@ -46,12 +46,12 @@ def player_turn(player_stack, ai_stack, window):
         
     pancake_buttons = []
     ai_buttons = []
-    i = 0
+    i = 1
     for x in player_stack:
         
         num = str(x)
-        pancake = Button(window, text=num, command=pancake_pressed(x - 1,  pancake_buttons), pady=10, padx = x*10, bg = "green")
-        pancake.grid(column = 720, row = i + 10)
+        pancake = Button(window, text=num, command=pancake_pressed(i - 1,  pancake_buttons), pady=10, padx = x*10, bg = "green")
+        pancake.grid(column = 720, row = i - 1 + 10)
         pancake_buttons.append(pancake)
         i = i + 1
 
@@ -62,6 +62,10 @@ def player_turn(player_stack, ai_stack, window):
         pancake.grid(column = 1440, row = i + 10)
         ai_buttons.append(pancake)
 
+    ai_label = Label(window, text = "AI Stack")
+    player_label = Label(window, text = "Player Stack")
+    ai_label.grid(column = 1440, row = 0)
+    player_label.grid(column = 720, row = 0)
     window.wait_variable(var)
     
     return_stack = ""
@@ -75,5 +79,5 @@ def player_turn(player_stack, ai_stack, window):
         widget.destroy()
 
     
-    return return_stack
+    return player_stack
 

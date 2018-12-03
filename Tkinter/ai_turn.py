@@ -30,6 +30,10 @@ def ai_turn(player_stack, ai_stack, ai_move, window):
 
     y = ai_move
 
+    ai_label = Label(window, text = "AI Stack")
+    player_label = Label(window, text = "Player Stack")
+    ai_label.grid(column = 1440, row = 0)
+    player_label.grid(column = 720, row = 0)
     temp_stack = ai_stack[0:y:1]
     temp_buttons = ai_buttons[0:y:1]
     temp_stack.reverse()
@@ -51,7 +55,7 @@ def ai_turn(player_stack, ai_stack, ai_move, window):
 
 
     window.update()
-    time.sleep(3)
+    time.sleep(1)
     window.update()
     
     
@@ -65,6 +69,8 @@ def ai_turn(player_stack, ai_stack, ai_move, window):
     for widget in window.winfo_children():
         widget.destroy()
     
-    return return_stack
+    return ai_stack
+
+
 
 
