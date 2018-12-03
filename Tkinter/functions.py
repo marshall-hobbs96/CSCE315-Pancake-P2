@@ -2,7 +2,7 @@ from Tkinter import *
 from PIL import ImageTk, Image
 from random import shuffle
 import tkMessageBox
-import from time *
+from time import *
 
 
 inputStack = list()
@@ -241,7 +241,7 @@ def splash_text(c):
 
 	
 def splash():
-	sys.argv = ["Main"]
+	
 	window = Tk()
 	window.title("Pretty Pancake!")
 	wind_width = 1280
@@ -259,6 +259,7 @@ def splash():
 	return window
 	
 def start():
+	sys.argv = ["Main"]
 	window = splash()
 	instructions(window)
 	
@@ -442,3 +443,6 @@ def ai_turn(player_stacks, ai_stacks, ai_moves, window):
 
     return_stack = return_stack[::-1]
     return return_stack
+
+
+window =start()

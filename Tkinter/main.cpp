@@ -12,8 +12,8 @@ int main() {
     setenv("PYTHONPATH",".",1);
 
     PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pFunc3, *pValue, *presult, *pValue2, *pValue3, *presult2, *presult3, *playerTurn, *playerTurnResult, *playerFunc, *AITurn, *AITurnResult, *AIFunc;
-	int ND, numOfPancakes, difficulty;
-	string n;
+	int ND, numOfPancakes, difficulty, stack;
+	string n, s;
 
     // Initialize the Python Interpreter
     Py_Initialize();
@@ -33,6 +33,8 @@ int main() {
     pFunc1 = PyDict_GetItemString(pDict, (char*)"start");
 	pFunc2 = PyDict_GetItemString(pDict, (char*)"drawDifficultyWindow");
 	pFunc3 = PyDict_GetItemString(pDict, (char*)"drawOrderWindow");
+    playerFunc = PyDict_GetItemString(pDict, (char*)"player_turn");
+    AIFunc = PyDict_GetItemString(pDict, (char*)"AI_turn");
 	
     if (PyCallable_Check(pFunc1))
     {
@@ -56,13 +58,18 @@ int main() {
 		pValue2=Py_BuildValue("(Os)",presult,n.c_str());
 		presult3 = PyObject_CallObject(pFunc3,pValue2);
 		// pValue3=Py_BuildValue("(O)",presult3);
-        string stack = "132465879";
-        string playerStack = stack;
-        string AIStack = stack;
+
+
+        stack = PyInt_AsLong(presult3);
+        s = to_string(stack);
+
+        //string stack = "132465879";
+        string playerStack = s;
+        string AIStack = s;
         string AIMove = "2";
         int* intStack;
-        for (int i = 0; i < stack.size(); i++) {
-            intStack[i] = stack[i] - '0';
+        for (int i = 0; i < s.size(); i++) {
+            intStack[i] = s[i] - '0';
         }
         // start the game
         Game * currGame = new Game(numOfPancakes,difficulty,"scores.txt",intStack);
