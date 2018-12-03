@@ -1,13 +1,151 @@
 from Tkinter import *
 from PIL import ImageTk, Image
+from random import shuffle
+import tkMessageBox
 
 
+inputStack = list()
+finalStack = list()
+output_x = 500
+
+def setStack(w):
+	global finalStack
+	stack = ''.join(str(e) for e in finalStack)
+	fd = open("stack.dat","w")
+	fd.write(stack)
+	fd.close
+	w.quit()
+	w.pack_forget()
+	
+
+def generateStack(stackSize, stackState,w):
+	global finalStack
+	del finalStack[:]
+	numbers = [0,0,0,0,0,0,0,0,0]                           
+	for i in stackState:		              #iterate through the user input string
+		if((i >= 0) and (i <= 9)):                   
+			finalStack.append(i)
+			numbers[i - 1] += 1
+			if(numbers[i - 1] > 1):
+				for i in xrange(stackSize):
+					finalStack.append(i + 1)             #fill with 1 - n for shuffle
+				tkMessageBox.showwarning("Warning","Since the order entered has duplicate numbers, the game is going to create a random stack")
+				gen_rand_stack(finalStack, stackSize, w)   #shuffle the stack, i.e. random
+				return
+			elif(i > stackSize):
+				for i in xrange(stackSize):
+					finalStack.append(i + 1)              #fill with 1 - n for shuffle
+				tkMessageBox.showwarning("Warning","Since you entered a number higher than the size of the stack, the game is going to create a random stack")
+				gen_rand_stack(finalStack, stackSize, w)     #shuffle the stack, i.e. random
+				return
+	if (len(finalStack) != (stackSize)):         #stacksize is 5 and user put 1 2 3 4 or something like that
+		del finalStack[:]
+		for i in xrange(stackSize):
+			finalStack.append(i + 1)              #fill with 1 - n for shuffle
+		tkMessageBox.showwarning("Warning","Since the wrong number of inputs were entered, the game is going to create a random stack")
+		gen_rand_stack(finalStack, stackSize, w)		#shuffle the stack, i.e. random
+		return
+	finalStack = stackState
+	setStack(w)
+	return
+	
+
+def gen_rand_stack(stack, stackSize,w):
+	not_shuffled = 1
+	resultStack = stack 
+	while(not_shuffled):
+		shuffle(stack)              #shuffle the stack
+		for i in xrange(stackSize):
+			if(stack[i]==(stackSize-i)):
+				not_shuffled = 1
+			else:
+				not_shuffled = 0
+	finalStack = resultStack
+	setStack(w)
+	return
+	
+
+def addToStack(p,w,b):
+	global inputStack
+	global output_x
+	inputStack.append(p)
+	output = str(p)
+	w.create_text(output_x,325,text=output,font=("Arial",20), anchor = NW,tag = "output")
+	b.config(state=DISABLED,takefocus=0)
+	output_x = output_x+20
+	
+def drawPancakeButtons(w, n):
+
+	pb1 = Button(w, text="1", command=lambda:addToStack(1,w,pb1), height=2, width=5)
+	pb2 = Button(w, text="2", command=lambda:addToStack(2,w,pb2), height=2, width=5)
+	pb3 = Button(w, text="3", command=lambda:addToStack(3,w,pb3), height=2, width=5)
+	pb4 = Button(w, text="4", command=lambda:addToStack(4,w,pb4), height=2, width=5)
+	pb5 = Button(w, text="5", command=lambda:addToStack(5,w,pb5), height=2, width=5)
+	pb6 = Button(w, text="6", command=lambda:addToStack(6,w,pb6), height=2, width=5)
+	pb7 = Button(w, text="7", command=lambda:addToStack(7,w,pb7), height=2, width=5)
+	pb8 = Button(w, text="8", command=lambda:addToStack(8,w,pb8), height=2, width=5)
+	pb9 = Button(w, text="9", command=lambda:addToStack(9,w,pb9), height=2, width=5)
+	
+	step = 780/n
+	
+	coord = range(280,1100,step)
+	
+	for i in xrange(n+1):
+		if (i == 1):
+			pb1.place(x=coord[i-1],y=200)
+		elif (i == 2):
+			pb2.place(x=coord[i-1],y=200)
+		elif (i == 3):
+			pb3.place(x=coord[i-1],y=200)
+		elif (i == 4):
+			pb4.place(x=coord[i-1],y=200)
+		elif (i == 5):
+			pb5.place(x=coord[i-1],y=200)
+		elif (i == 6):
+			pb6.place(x=coord[i-1],y=200)
+		elif (i == 7):
+			pb7.place(x=coord[i-1],y=200)
+		elif (i == 8):
+			pb8.place(x=coord[i-1],y=200)
+		elif (i == 9):
+			pb9.place(x=coord[i-1],y=200)
+
+def drawRandomButton(w, n):
+	global finalStack
+	for i in xrange(n):
+		finalStack.append(i + 1)                 #fill with 1 - n for shuffle	
+	rb = Button(w, text="Random", command=lambda:gen_rand_stack(finalStack, n, w), height=3, width=10)
+	rb.place(x=350,y=500)
+	
+	
+def drawSubmitButton(w, n):
+	global inputStack
+	sb = Button(w, text="Submit", command=lambda:generateStack(n, inputStack, w), height=3, width=10)
+	sb.place(x=650,y=500)
+	
+
+def drawOrderWindow(master,n):
+	
+	w = Canvas(master, width=1280, height=720)
+	w.pack()
+	n = int(n)
+	w.create_text(450,50,text="Pick the order of your pancake!",font=("Arial",26), anchor = NW)
+	w.create_text(350,125,text="Press the buttons in the order you want or click Random",font=("Arial",20), anchor = NW)
+	drawPancakeButtons(w, n)
+	drawRandomButton(w, n)	
+	drawSubmitButton(w, n)
+	w.mainloop()
+	
+	fd = open("stack.dat","r")
+	pancakeStack = fd.readline()
+	return int(pancakeStack)
+			
 def setND(w,n,d):
 	fd = open("param.dat","w")
 	fd.write(str(n))
 	fd.write(str(d))
 	fd.close
-	
+	w.quit()
 	w.pack_forget()
 
 def choosePancakes (w):
