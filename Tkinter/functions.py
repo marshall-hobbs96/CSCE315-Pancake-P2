@@ -348,7 +348,7 @@ def player_turn(player_stacks, ai_stacks, window):
     for x in player_stack:
         return_stack = return_stack + str(x)
 
-    print(return_stack)
+    print return_stack
 
     for widget in window.winfo_children():
         widget.destroy()
@@ -435,7 +435,7 @@ def ai_turn(player_stacks, ai_stacks, ai_moves, window):
     for x in ai_stack:
         return_stack = return_stack + str(x)
 
-    print(return_stack)
+    print return_stack
 
     for widget in window.winfo_children():
         widget.destroy()
