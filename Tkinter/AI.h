@@ -33,10 +33,10 @@ using namespace std;
  ***********************************************/
 
 class AI : public Player {
-private:
+public:
     int difficulty;
     
-public:
+//public:
     // For the AI to decide under which pancake to flip:
     int calculateMove();
 	int getDifficulty();

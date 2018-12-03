@@ -83,6 +83,9 @@ Game::~Game() {
 int* Game::getHumanStack() {
     return human.getStack();
 }
+void Game::setHumanStack(int* newStack) {
+	human.stack = newStack;
+}
 
 int* Game::getAIStack() {
     return ai.getStack();
@@ -95,6 +98,10 @@ int Game::getStackSize() {
 // For getting the result of AI.calculateMove()
 int Game::getAIMove() {
     return ai.calculateMove();
+}
+
+void Game::setAIStack(int* newStack) {
+	ai.stack = newStack;
 }
 
 /* For the gameplay loop */

@@ -35,13 +35,13 @@ Player.h - Interface for the Player class
  ***********************************************/
 
 class Player {
-protected:
+public:
     int *stack;         // Pancake Stack size
     int stack_size;     // Number of Pancakes
 
     void swapPancakes(int i, int j);
 
-public:
+//public:
     int* getStack();
     int getStackSize();
     void makeMove(int pancake);     // Same "flipping" action for all players

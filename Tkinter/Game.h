@@ -54,6 +54,9 @@ public:
     int* getAIStack();
     int getStackSize();
     int getAIMove();         // For getting the result of AI.calculateMove()
+    void setHumanStack(int* stack);
+    void setAIStack(int* stack);
+
 
     // For gameplay loop:
     void moveHuman(int pancake);
