@@ -129,8 +129,11 @@ def drawOrderWindow(master,n):
 	w = Canvas(master, width=1280, height=720)
 	w.pack()
 	n = int(n)
+	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
+	#w.create_image(0,0, image = pic, anchor= NW)
 	w.create_text(450,50,text="Pick the order of your pancake!",font=("Arial",26), anchor = NW)
 	w.create_text(350,125,text="Press the buttons in the order you want or click Random",font=("Arial",20), anchor = NW)
+	
 	drawPancakeButtons(w, n)
 	drawRandomButton(w, n)	
 	drawSubmitButton(w, n)
@@ -173,6 +176,8 @@ def drawDifficultyWindow(master):
 	
 	w = Canvas(master, width=1280, height=720)
 	w.pack()
+	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
+	#w.create_image(0,0, image = pic, anchor= NW)
 	w.create_text(520,50,text="Set Your Difficulty!",font=("Arial",30), anchor = NW)
 	
 	choosePancakes(w)
@@ -183,17 +188,56 @@ def drawDifficultyWindow(master):
 	return int(parameters)
 	
 
+def instructions_text(c):
+	c.create_text(500,25,text="Instructions",font=("Arial",50,"bold"), anchor = NW)\
+	
+	c.create_text(50,100,text="Goal:",font=("Arial",30,"bold"), anchor = NW)
+	c.create_text(150,110,text="Your goal is to sort a stack of pancakes from top to buttom (meaning the smallest pancake will",font=("Arial",25), anchor = NW)
+	c.create_text(150,140,text="be on the top and the largest on the bottom) before the computer sorts a stack of pancakes",font=("Arial",25), anchor = NW)
+	c.create_text(150,170,text="identical to yours",font=("Arial",25), anchor = NW)
+	
+	c.create_text(50,200,text="Setup:",font=("Arial",30,"bold"), anchor = NW)
+	c.create_text(150,240,text="1. Use the sliders on the next screen to choose the number of pancakes and the difficulty level",font=("Arial",25), anchor = NW)
+	c.create_text(150,270,text="2. On the screen after specify the order of the stacks by pressing each pancake size in the",font=("Arial",25), anchor = NW)
+	c.create_text(150,300,text="    order you want, Or press the RANDOM button for a randomly ordered stack ",font=("Arial",25), anchor = NW)
+	
+	c.create_text(50,340,text="How To Play:",font=("Arial",30,"bold"), anchor = NW)
+	c.create_text(150,380,text="1. To flip part of the your stack of pancakes(left stack) click on the bottom pancake in the ",font=("Arial",25), anchor = NW)
+	c.create_text(150,410,text="    sub-stack you want to flip.",font=("Arial",25), anchor = NW)
+	c.create_text(150,440,text="2. After clicking on a pancake the sub stack will turn red and flip. The Computer will then take",font=("Arial",25), anchor = NW)
+	c.create_text(150,470,text="    take its turn.",font=("Arial",25), anchor = NW)
+	c.create_text(150,500,text="3. After the Computers sub-stack flips, it will be your turn again.",font=("Arial",25), anchor = NW)
+	c.create_text(150,530,text="4. Once either you or the Computer has sorted there stack of pancakes the game will end, and",font=("Arial",25), anchor = NW)
+	c.create_text(150,560,text="    your score will be printed on the screen.",font=("Arial",25), anchor = NW)
+	
+	
+
 def instructions(window):
 	wind_width = 1280
 	wind_height = 720
 	c = Canvas(window, width = wind_width, height = wind_height)
 	c.pack(expand = YES, fill = BOTH)
-	button = Button(window,text = "CONTINUE", command=window.quit)
+	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
+	#c.create_image(0,0, image = pic, anchor= NW)
+	button = Button(window,text = "Continue", command=window.quit)
 	button.configure(width = 20, height = 5)
-	c.create_window(640,600, window = button)
+	c.create_window(650,650, window = button)
+	instructions_text(c)
 	window.mainloop()
 	c.pack_forget()
 	return window
+	
+def splash_text(c):
+	c.create_text(240,75,text="Ultimate Pancake Flipper Simulator 2018",font=("Arial",54), anchor = NW)
+	c.create_text(700,225,text="***Team 13: Pretty Pancake***",font=("Arial",40), anchor = NW)
+	c.create_text(900,325,text="Memebers:",font=("Arial",32), anchor = NW)
+	c.create_text(740,375,text="Leuel Asnake",font=("Arial",28), anchor = NW)
+	c.create_text(1040,375,text="Samantha Hay",font=("Arial",28), anchor = NW)
+	c.create_text(740,425,text="Marshall Hobbs",font=("Arial",28), anchor = NW)
+	c.create_text(1040,425,text="Hannah Hutton",font=("Arial",28), anchor = NW)
+	c.create_text(740,475,text="Jeevika Jarmarwala ",font=("Arial",28), anchor = NW)
+	c.create_text(1040,475,text="McLain Johnson",font=("Arial",28), anchor = NW)
+
 	
 def splash():
 	sys.argv = ["Main"]
@@ -203,13 +247,12 @@ def splash():
 	wind_height = 720
 	c = Canvas(window, width = wind_width, height = wind_height)
 	c.pack(expand = YES, fill = BOTH)
-	button = Button(window,text = "START", command=window.quit)
+	button = Button(window,text = "Start", command=window.quit)
 	button.configure(width = 20, height = 5)
 	c.create_window(1000,600, window = button)
 	pic = ImageTk.PhotoImage(Image.open("Pancake.jpg"))
 	c.create_image(0,0, image = pic, anchor= NW)
-	print("Running. Use graphics window to play.")
+	splash_text(c)
 	window.mainloop()	
 	c.pack_forget()
-	instructions(window)
-	
+	instructions(window)	
