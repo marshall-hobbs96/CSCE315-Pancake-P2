@@ -2,11 +2,23 @@ from tkinter import *
 import time
 
 
-def player_turn(player_stack, ai_stack, window):
+def player_turn(player_stacks, ai_stacks, window):
 
+    player_stack = []
+    ai_stack = []
+
+    for x in player_stacks:
+        player_stack.append(int(x))
+
+    for x in ai_stacks:
+        ai_stack.append(int(x))
+    
     for widget in window.winfo_children():
         widget.destroy()
     var = IntVar()
+
+    turn_label = Label(window, text = "Player Turn", font = ("Comic Sans MS", 30))
+    turn_label.place(relx = 0.5, rely=0.75, anchor = CENTER)
     
     def pancake_pressed(x, buttons):
         def wrapper(y = x):
@@ -50,7 +62,7 @@ def player_turn(player_stack, ai_stack, window):
     for x in player_stack:
         
         num = str(x)
-        pancake = Button(window, text=num, command=pancake_pressed(i - 1,  pancake_buttons), pady=10, padx = x*10, bg = "green")
+        pancake = Button(window, text=num, command=pancake_pressed(i - 1,  pancake_buttons), pady=10, padx = x*10, bg = "green", font = ("Comic Sans MS", 15))
         pancake.grid(column = 720, row = i - 1 + 10)
         pancake_buttons.append(pancake)
         i = i + 1
@@ -58,12 +70,12 @@ def player_turn(player_stack, ai_stack, window):
     for i,x in enumerate(ai_stack[:]):
         
         num = str(x)
-        pancake = Button(window, text=num, pady = 10, padx = x*10, bg="green")
+        pancake = Button(window, text=num, pady = 10, padx = x*10, bg="green", font = ("Comic Sans MS", 15))
         pancake.grid(column = 1440, row = i + 10)
         ai_buttons.append(pancake)
 
-    ai_label = Label(window, text = "AI Stack")
-    player_label = Label(window, text = "Player Stack")
+    ai_label = Label(window, text = "AI Stack", font = ("Comic Sans MS", 15))
+    player_label = Label(window, text = "Player Stack", font = ("Comic Sans MS", 15))
     ai_label.grid(column = 1440, row = 0)
     player_label.grid(column = 720, row = 0)
     window.wait_variable(var)
@@ -79,5 +91,5 @@ def player_turn(player_stack, ai_stack, window):
         widget.destroy()
 
     
-    return player_stack
+    return return_stack
 
