@@ -5,7 +5,7 @@ def tie_window(window):
     for widget in window.winfo_children():
         widget.destroy()
 
-    win_label = Label(window, text = "YOU TIED!!!!!", font = ("Comic Sans MS", 50), fg = "red")
+    win_label = Label(window, text = "YOU TIED!!!!!\n SPONGEBOB WOULD BE PROUD", font = ("Comic Sans MS", 50), fg = "red")
     win_label.place(relx= 0.5, rely = 0.5, anchor = CENTER)
     for x in range(50):
         window.configure(background = "green")

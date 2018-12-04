@@ -1,11 +1,13 @@
-from tkinter import *
+from Tkinter import *
 import time
 
 
 def player_turn(player_stacks, ai_stacks, window):
-
+    sys.argv=["Main"]
     player_stack = []
     ai_stack = []
+    player_stacks = player_stacks[::-1]
+    ai_stacks = ai_stacks[::-1]
 
     for x in player_stacks:
         player_stack.append(int(x))
@@ -90,6 +92,6 @@ def player_turn(player_stacks, ai_stacks, window):
     for widget in window.winfo_children():
         widget.destroy()
 
-    
+    return_stack = return_stack[::-1]
     return return_stack
 
