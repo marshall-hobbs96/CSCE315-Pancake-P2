@@ -6,8 +6,7 @@ import functions as f
 def splash_tests():
 	print("The screen will open, look to see if there is an image of pancakes, six team member names, and a title. Then press the start button.")
 	print
-	window = f.splash()
-	window.destroy()
+	f.splash()
 	test1 = raw_input("Was the an image of pancakes present? (y/n): ")
 	test2 = raw_input("Were 6 team member names present? (y/n): ")
 	test3 = raw_input("Was there a title present at the top? (y/n): ")
@@ -31,9 +30,7 @@ def instruction_tests():
 
 	print("The screen will open, look to see if there is a Goals, Setup, and How to play sections, Instructions is written at the top, and the continue button is centered. Then press the continue button.")
 	print
-	window= Tk()
-	f.instructions(window)
-	window.destroy()
+	f.instructions()
 	test1 = raw_input("Was there a Goals, Setup, and How to play section? (y/n): ")
 	test2 = raw_input("Was instructions written at the top? (y/n): ")
 	test3 = raw_input("Was the continue button centered? (y/n): ")
@@ -57,9 +54,7 @@ def difficultyWindow_tests():
 	print("The screen will open, there will be 1 slider initially to choose number of pancakes")
 	print("After selecting and pressing 'Next', a second slider with difficulty should be visible")
 	print
-	window = Tk()
-	f.drawDifficultyWindow(window)
-	window.destroy()
+	f.drawDifficultyWindow()
 	test1 = raw_input("Was there a slider for pancakes? (y/n): ")
 	test2 = raw_input("Was there a next button? (y/n): ")
 	test3 = raw_input("Did the second slider show up when you pressed Next? (y/n): ")
@@ -88,9 +83,7 @@ def difficultyWindow_tests():
 def orderWindow_tests():
 	print("The screen will open, there will be 7 pancake buttons, press the buttons according to the order you want")
 	print
-	window = Tk()
-	f.drawOrderWindow(window, 7)
-	window.destroy()
+	f.drawOrderWindow(7)
 	test1 = raw_input("Were there 7 different buttons? (y/n): ")
 	test2 = raw_input("Was there a random button at the bottom? (y/n): ")
 	test3 = raw_input("Was there a submit button at the bottom? (y/n): ")
