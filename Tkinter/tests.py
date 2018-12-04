@@ -57,7 +57,7 @@ def orderWindow_tests():
 	print("The screen will open, there will be 7 pancake buttons, press the buttons according to the order you want")
 	print
 	window = Tk()
-	f.drawOrderWindow(window,7)
+	f.drawOrderWindow(window, 7)
 	window.destroy()
 	test1 = raw_input("Were there 7 different buttons? (y/n): ")
 	test2 = raw_input("Was there a random button at the bottom? (y/n): ")
@@ -87,7 +87,7 @@ def orderWindow_tests():
 
 
 if __name__ == "__main__":	
-	splash_tests()
-	instruction_tests()
+	#splash_tests()
+	#instruction_tests()
 	orderWindow_tests()
 	
