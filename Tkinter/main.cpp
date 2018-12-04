@@ -11,7 +11,7 @@ int main() {
 	// // Set PYTHONPATH TO working directory
     setenv("PYTHONPATH",".",1);
 
-    PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pFunc3, *pValue, *presult, *pValue2, *pValue3, *presult2, *presult3, *playerTurn, *playerTurnResult, *playerFunc, *AITurn, *AITurnResult, *AIFunc;
+    PyObject *pName,*pModule, *pDict, *pFunc1, *pFunc2, *pFunc3, *pValue, *presult, *pValue2, *pValue3, *presult2, *presult3, *playerTurn, *playerTurnResult, *playerFunc, *AITurn, *AITurnResult, *AIFunc, *InitFunc, *ScoreFunc;
 	int ND, numOfPancakes, difficulty, stack;
 	string n, s;
 
@@ -35,6 +35,8 @@ int main() {
 	pFunc3 = PyDict_GetItemString(pDict, (char*)"drawOrderWindow");
     playerFunc = PyDict_GetItemString(pDict, (char*)"player_turn");
     AIFunc = PyDict_GetItemString(pDict, (char*)"AI_turn");
+	InitFunc = PyDict_GetItemString(pDict, (char*)"initials");
+	ScoreFunc = PyDict_GetItemString(pDict, (char*)"scores");
 	
     if (PyCallable_Check(pFunc1))
     {
