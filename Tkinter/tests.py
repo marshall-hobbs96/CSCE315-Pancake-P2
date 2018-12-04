@@ -52,12 +52,44 @@ def instruction_tests():
 	else:
 		print("Test 3: FAIL")
 	print
+
+def difficultyWindow_tests():
+	print("The screen will open, there will be 1 slider initially to choose number of pancakes")
+	print("After selecting and pressing 'Next', a second slider with difficulty should be visible")
+	print
+	window = Tk()
+	f.drawDifficultyWindow(window)
+	window.destroy()
+	test1 = raw_input("Was there a slider for pancakes? (y/n): ")
+	test2 = raw_input("Was there a next button? (y/n): ")
+	test3 = raw_input("Did the second slider show up when you pressed Next? (y/n): ")
+	test4 = raw_input("Were you able to move the sliders around? (y/n): ")
+
+	print
+	print("Difficulty window screen tests:")
+	if test1 == "y":
+		print("Test 1: PASS")
+	else:
+		print("Test 1: FAIL")
+	if test2 == "y":
+		print("Test 2: PASS")
+	else:
+		print("Test 2: FAIL")
+	if test3 == "y":
+		print("Test 3: PASS")
+	else:
+		print("Test 3: FAIL")
+	if test4 == "y":
+		print("Test 4: PASS")
+	else:
+		print("Test 4: FAIL")
+	print
 	
 def orderWindow_tests():
 	print("The screen will open, there will be 7 pancake buttons, press the buttons according to the order you want")
 	print
 	window = Tk()
-	f.drawOrderWindow(window,7)
+	f.drawOrderWindow(window, 7)
 	window.destroy()
 	test1 = raw_input("Were there 7 different buttons? (y/n): ")
 	test2 = raw_input("Was there a random button at the bottom? (y/n): ")
@@ -83,6 +115,7 @@ def orderWindow_tests():
 	else:
 		print("Test 4: FAIL")
 	print
+	
 	
 def initials_test():
 	window = Tk()
@@ -115,8 +148,10 @@ def score_test():
 	else:
 		print("Score output not working")	
 
+
 if __name__ == "__main__":	
 	splash_tests()
 	instruction_tests()
+	difficultyWindow_tests()
 	orderWindow_tests()
 	
