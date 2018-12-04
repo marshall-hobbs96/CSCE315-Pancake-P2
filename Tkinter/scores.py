@@ -28,6 +28,9 @@ def initials(window, status):	#status is a string with a message about the winne
 
 	def clicked():
 		initials = txt.get()
+		f=open("initials.txt", "w")
+		if f.mode == 'w':
+			f.write(initials)
 		fill.destroy()
 		lbl.destroy()
 		lbl2.destroy()
@@ -43,7 +46,7 @@ def initials(window, status):	#status is a string with a message about the winne
 	btn = Button(window, text="Enter", command=clicked)
 	btn.pack()
 	btn.config(height=2,width=20)
-
+	
 	window.mainloop()
 
 	return initials
@@ -183,7 +186,12 @@ def updateScore(scoresInput, newInitials, newScore):
 	f=open("scores.txt", "w")
 	if f.mode == 'w':
 		f.write(output)
+		
 	return output
+	
+window = Tk()
+window.geometry('1280x720')
+window.title("Test")
 		
 #test1=initials(window, 0)
 # test2=initials(window, 1)
@@ -208,8 +216,11 @@ def updateScore(scoresInput, newInitials, newScore):
 # x = updateScore(readScore(), "hh", 30)
 # scores(window, x)
 
-# score = calcScore(0, 4, 4)	#winner, n, d
+# score = calcScore(1, 400, 40)	#winner, n, d
 # scrs = readScore()
-# ins = initials(window, 0)	#window, winner
+# ins = initials(window, 1)	#window, winner
+# f=open("initials.txt","r")
+# if f.mode == 'r':
+	# ins = f.read()
 # scoreString = updateScore(scrs, ins, score)	#high scores, initials, score
 # scores(window, scoreString)	#window, high scores
