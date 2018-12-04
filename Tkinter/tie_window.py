@@ -1,7 +1,7 @@
 from Tkinter import *
 from time import *
 
-def tie_window:
+def tie_window(window):
     for widget in window.winfo_children():
         widget.destroy()
 
@@ -18,3 +18,4 @@ def tie_window:
         window.update()
         sleep(0.1)
         window.update()
+
