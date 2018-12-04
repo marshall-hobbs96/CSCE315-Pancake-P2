@@ -12,7 +12,7 @@ output_x = 550
 def setStack(w):
 	global finalStack
 	stack = ''.join(str(e) for e in finalStack)
-	fd = open("stack.dat","w")
+	fd = open("stack.txt","w")
 	fd.write(stack)
 	fd.close
 	w.quit()
@@ -33,9 +33,8 @@ def generateStack(stackSize, stackState,w):
 	return
 	
 
-def gen_rand_stack(stack, stackSize,w):
-	not_shuffled = 1
-	resultStack = stack 
+def gen_rand_stack(stack, stackSize, w):
+	not_shuffled = 1 
 	while(not_shuffled):
 		shuffle(stack)              #shuffle the stack
 		for i in xrange(stackSize):
@@ -43,7 +42,7 @@ def gen_rand_stack(stack, stackSize,w):
 				not_shuffled = 1
 			else:
 				not_shuffled = 0
-	finalStack = resultStack
+	finalStack = stack
 	setStack(w)
 	return
 	
@@ -108,14 +107,19 @@ def drawSubmitButton(w, n):
 	sb = Button(w, text="Submit", command=lambda:generateStack(n, inputStack, w), height=3, width=10)
 	sb.place(x=750,y=500)
 	
-
-def drawOrderWindow(master,n):
-	
+def dest(master):
 	w = Canvas(master, width=1280, height=720)
+	master.destroy
+	
+
+def drawOrderWindow(n):
+	sys.argv = ["Main"]
+	window = Tk()
+	window.title("Pretty Pancake!")
+	w = Canvas(window, width=1280, height=720)
 	w.pack()
 	n = int(n)
-	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
-	#w.create_image(0,0, image = pic, anchor= NW)
+
 	w.create_text(450,50,text="Pick the order of your pancake!",font=("Arial",26), anchor = NW)
 	w.create_text(350,125,text="Press the buttons in the order you want or click Random",font=("Arial",20), anchor = NW)
 	
@@ -123,13 +127,10 @@ def drawOrderWindow(master,n):
 	drawRandomButton(w, n)	
 	drawSubmitButton(w, n)
 	w.mainloop()
-	
-	fd = open("stack.dat","r")
-	pancakeStack = fd.readline()
-	return int(pancakeStack)
+	window.destroy()
 			
 def setND(w,n,d):
-	fd = open("param.dat","w")
+	fd = open("param.txt","w")
 	fd.write(str(n))
 	fd.write(str(d))
 	fd.close
@@ -155,22 +156,21 @@ def chooseDifficulty(w,p,n):
 	submitB.place(x=600,y=650)
 	
 	
-def drawDifficultyWindow(master):
+def drawDifficultyWindow():
+	sys.argv = ["Main"]
+	window = Tk()
+	window.title("Pretty Pancake!")
+	
 	global numOfPancakes
 	global difficulty
 	
-	w = Canvas(master, width=1280, height=720)
+	w = Canvas(window, width=1280, height=720)
 	w.pack()
-	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
-	#w.create_image(0,0, image = pic, anchor= NW)
 	w.create_text(520,50,text="Set Your Difficulty!",font=("Arial",30), anchor = NW)
 	
 	choosePancakes(w)
 	w.mainloop()
-	
-	fd = open("param.dat","r")
-	parameters = fd.readline()
-	return int(parameters)
+	window.destroy()
 	
 
 def instructions_text(c):
@@ -195,22 +195,22 @@ def instructions_text(c):
 	c.create_text(150,530,text="4. Once either you or the Computer has sorted there stack of pancakes the game will end, and",font=("Arial",25), anchor = NW)
 	c.create_text(150,560,text="    your score will be printed on the screen.",font=("Arial",25), anchor = NW)
 	
-	
 
-def instructions(window):
+def instructions():
+	window = Tk()
+	window.title("Pretty Pancake!")
 	wind_width = 1280
 	wind_height = 720
 	c = Canvas(window, width = wind_width, height = wind_height)
 	c.pack(expand = YES, fill = BOTH)
-	#pic = ImageTk.PhotoImage(Image.open("bigoPancake.jpg"))
-	#c.create_image(0,0, image = pic, anchor= NW)
 	button = Button(window,text = "Continue", command=window.quit)
 	button.configure(width = 20, height = 5)
 	c.create_window(650,650, window = button)
 	instructions_text(c)
 	window.mainloop()
 	c.pack_forget()
-	return window
+	window.destroy()
+
 	
 def splash_text(c):
 	c.create_text(240,75,text="Ultimate Pancake Flipper Simulator 2018",font=("Arial",54), anchor = NW)
@@ -240,191 +240,9 @@ def splash():
 	splash_text(c)
 	window.mainloop()	
 	c.pack_forget()
-	return window
+	window.destroy()
 	
 def start():
 	sys.argv = ["Main"]
-	window = splash()
-	instructions(window)
-	
-	
-def player_turn(player_stacks, ai_stacks, window):
-    sys.argv=["Main"]
-    player_stack = []
-    ai_stack = []
-    player_stacks = player_stacks[::-1]
-    ai_stacks = ai_stacks[::-1]
-
-    for x in player_stacks:
-        player_stack.append(int(x))
-
-    for x in ai_stacks:
-        ai_stack.append(int(x))
-    
-    for widget in window.winfo_children():
-        widget.destroy()
-    var = IntVar()
-
-    turn_label = Label(window, text = "Player Turn", font = ("Comic Sans MS", 30))
-    turn_label.place(relx = 0.5, rely=0.75, anchor = CENTER)
-    
-    def pancake_pressed(x, buttons):
-        def wrapper(y = x):
-            num = str(y)
-            y = y + 1
-
-            statement = "Pancake " + num + " has been pressed\n"
-            temp_stack = player_stack[0:y:1]
-            temp_buttons = buttons[0:y:1]
-            temp_stack.reverse()
-            temp_buttons.reverse()
-            player_stack[0:y] = temp_stack
-            buttons[0:y] = temp_buttons
-            for i, x in enumerate(buttons[0:y]):
-                buttons[i]["bg"] = "red"
-
-            window.update()
-            time.sleep(1)
-            window.update()
-            
-            
-            for i, x in enumerate(buttons[0:y]):
-                buttons[i].grid_forget()
-                buttons[i].grid(column = 720, row = i + 10)
-                buttons[i]["bg"] = "green"
-                buttons[i]["command"] = pancake_pressed(i, pancake_buttons)
-
-            window.update()
-            time.sleep(1)
-            window.update()
-            var.set(1)
-            return
-        return wrapper
-
-    window.grid_columnconfigure(1440, weight = 1)
-    window.grid_columnconfigure(720, weight = 1)
-        
-    pancake_buttons = []
-    ai_buttons = []
-    i = 1
-    for x in player_stack:
-        
-        num = str(x)
-        pancake = Button(window, text=num, command=pancake_pressed(i - 1,  pancake_buttons), pady=10, padx = x*10, bg = "green", font = ("Comic Sans MS", 15))
-        pancake.grid(column = 720, row = i - 1 + 10)
-        pancake_buttons.append(pancake)
-        i = i + 1
-
-    for i,x in enumerate(ai_stack[:]):
-        
-        num = str(x)
-        pancake = Button(window, text=num, pady = 10, padx = x*10, bg="green", font = ("Comic Sans MS", 15))
-        pancake.grid(column = 1440, row = i + 10)
-        ai_buttons.append(pancake)
-
-    ai_label = Label(window, text = "AI Stack", font = ("Comic Sans MS", 15))
-    player_label = Label(window, text = "Player Stack", font = ("Comic Sans MS", 15))
-    ai_label.grid(column = 1440, row = 0)
-    player_label.grid(column = 720, row = 0)
-    window.wait_variable(var)
-    
-    return_stack = ""
-    
-    for x in player_stack:
-        return_stack = return_stack + str(x)
-
-    print return_stack
-
-    for widget in window.winfo_children():
-        widget.destroy()
-
-    return_stack = return_stack[::-1]
-    return return_stack
-    
-def ai_turn(player_stacks, ai_stacks, ai_moves, window):
-    sys.argv=["Main"]
-    player_stack = []
-    ai_stack = []
-    ai_move = 0
-    player_stacks = player_stacks[::-1]
-    ai_stacks = ai_stacks[::-1]
-
-    for x in player_stacks:
-        player_stack.append(int(x))
-
-    for x in ai_stacks:
-        ai_stack.append(int(x))
-
-    ai_move = int(ai_moves)
-
-    for widget in window.winfo_children():
-        widget.destroy()
-
-    turn_label = Label(window, text = "AI Turn", font = ("Comic Sans MS", 30))
-    turn_label.place(relx = 0.5, rely=0.75, anchor = CENTER)
-    
-    window.grid_columnconfigure(1440, weight = 1)
-    window.grid_columnconfigure(720, weight = 1)
-    pancake_buttons = []
-    ai_buttons = []
-    i = 0
-    for x in player_stack:
-        
-        num = str(x)
-        pancake = Button(window, text=num, pady=10, padx = x*10, bg = "green", font = ("Comic Sans MS", 15))
-        pancake.grid(column = 720, row = i + 10)
-        pancake_buttons.append(pancake)
-        i = i + 1
-
-    for i,x in enumerate(ai_stack[:]):
-        
-        num = str(x)
-        pancake = Button(window, text=num, pady = 10, padx = x*10, bg="green", font = ("Comic Sans MS", 15))
-        pancake.grid(column = 1440, row = i + 10)
-        ai_buttons.append(pancake)
- 
-
-    y = ai_move
-
-    ai_label = Label(window, text = "AI Stack", font = ("Comic Sans MS", 15))
-    player_label = Label(window, text = "Player Stack", font = ("Comic Sans MS", 15))
-    ai_label.grid(column = 1440, row = 0)
-    player_label.grid(column = 720, row = 0)
-    temp_stack = ai_stack[0:y:1]
-    temp_buttons = ai_buttons[0:y:1]
-    temp_stack.reverse()
-    temp_buttons.reverse()
-    ai_stack[0:y] = temp_stack
-    ai_buttons[0:y] = temp_buttons
-    for i, x in enumerate(ai_buttons[0:y]):
-        ai_buttons[i]["bg"] = "red"
-
-    window.update()
-    time.sleep(1)
-    window.update()
-            
-            
-    for i, x in enumerate(ai_buttons[0:y]):
-        ai_buttons[i].grid_forget()
-        ai_buttons[i].grid(column = 1440, row = i + 10)
-        ai_buttons[i]["bg"] = "green"
-
-
-    window.update()
-    time.sleep(1)
-    window.update()
-    
-    
-    return_stack = ""
-    
-    for x in ai_stack:
-        return_stack = return_stack + str(x)
-
-    print return_stack
-
-    for widget in window.winfo_children():
-        widget.destroy()
-
-    return_stack = return_stack[::-1]
-    return return_stack
-
+	splash()
+	instructions()
