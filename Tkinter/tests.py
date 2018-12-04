@@ -141,7 +141,7 @@ def score_test():
 	else:
 		print("Score output not working")	
 
-def game():
+def game_test():
 	window = Tk()
 	window.geometry('1280x720')
 	window.title("Test")
