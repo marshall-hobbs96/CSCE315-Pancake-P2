@@ -29,12 +29,15 @@ def main():
         if player_stack[::-1] == in_order_stack[0:stack_size] and ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             tie_window(window)
+            result = 2
         elif player_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             win_window(window)
+            result = 1
         elif ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             lose_window(window)
+            result = 0
 
     score = calcScore(result, 4, 4)
     scrs = readScore()
