@@ -16,7 +16,7 @@ def main():
     in_order_stack = "123456789"
     stack_size = len(stack);
     window = Tk()
-    window.geometry("1080x720")
+    window.geometry("1280x720")
     print in_order_stack[0:stack_size]
     int result = 2 #0 = loss, 1 = win, 2 = tie
     game_done = 0
