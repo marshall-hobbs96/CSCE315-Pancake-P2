@@ -44,14 +44,17 @@ def main():
         ai_stack = ai_turn(player_stack, ai_stack, calc_AI_move(ai_stack), window)
 
 
-        if player_stack[::-1] == in_order_stack[0:stack_size] and ai_stack[::-1] == in_order_stack[0:stack_size]:
-            game_done = 2
-            tie_window(window)
-        elif player_stack[::-1] == in_order_stack[0:stack_size]:
+        if player_stack == in_order_stack[0:stack_size] and ai_stack == in_order_stack[0:stack_size]:
             game_done = 1
+            result = 2
+            tie_window(window)
+        elif player_stack == in_order_stack[0:stack_size]:
+            game_done = 1
+            result = 1
             win_window(window)
-        elif ai_stack[::-1] == in_order_stack[0:stack_size]:
-            game_done = 0
+        elif ai_stack == in_order_stack[0:stack_size]:
+            game_done = 1
+            result = 0
             lose_window(window)
 
     score = calcScore(result, 4, 4)
