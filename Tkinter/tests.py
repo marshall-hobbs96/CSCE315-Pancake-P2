@@ -141,10 +141,21 @@ def score_test():
 	else:
 		print("Score output not working")	
 
+def game():
+	window = Tk()
+	window.geometry('1280x720')
+	window.title("Test")
+	inputVal = input("Did all of the pancakes you selected flip correctly? Y/N: ")
+	if inputVal == "y":
+		print("All tests passed!")
+	else:
+		print("Pancakes did not flip correctly")	
+
 
 if __name__ == "__main__":	
 	splash_tests()
 	instruction_tests()
 	difficultyWindow_tests()
 	orderWindow_tests()
+	game()
 	
