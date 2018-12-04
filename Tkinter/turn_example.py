@@ -51,7 +51,7 @@ def main():
     print(in_order_stack[0:stack_size])
     result = 2 #0 = loss, 1 = win, 2 = tie
     game_done = 0
-
+    status = -1
     whatflip = calc_AI_move(ai_stack)
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
@@ -62,18 +62,24 @@ def main():
             game_done = 1
             tie_window(window)
             result = 2
+            status = 2
+            print result
         elif player_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             win_window(window)
-            result = 1
+            result = 3
+            status = 1
+            print result
         elif ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             lose_window(window)
-            result = 0
+            result = 1
+            status = 0
+            print result
 
     score = calcScore(result, 4, 4)
     scrs = readScore()
-    ins = initials(window, 0)
+    ins = initials(window, status)
     score_string = updateScore(scrs, ins,score)
     scores(window,score_string)
             
