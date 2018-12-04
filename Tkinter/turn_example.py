@@ -18,6 +18,7 @@ def main():
     window = Tk()
     window.geometry("1080x720")
     print in_order_stack[0:stack_size]
+    int result = 2 #0 = loss, 1 = win, 2 = tie
     game_done = 0
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
@@ -33,6 +34,12 @@ def main():
         elif ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
             lose_window(window)
+            
+     score = calcScore(result, 4, 4)
+     scrs = readScore()
+     ins = initials(window, 0)
+     score_string = updateScore(scrs, ins,score)
+     scores(window,score_string)
             
 if __name__ == "__main__":
     main()
