@@ -5,6 +5,7 @@ from win_window import *
 from random import *
 from lose_window import *
 import sys
+import scores
 
 
 def main():
@@ -14,25 +15,41 @@ def main():
     player_stack = stack
     ai_stack = stack
     in_order_stack = "123456789"
-    stack_size = len(stack);
+    stack_size = len(stack) - 1;
+    int result = 2 #0 = loss, 1 = win, 2 = tie
+
 
     window = Tk()
-    window.geometry("1080x720")
+    window.geometry("1280x720")
 
     game_done = 0
+    print('in order stack' , in_order_stack)
+
+
+
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
         ai_stack = ai_turn(player_stack, ai_stack, str(randint(1,9)) , window)
 
-
         if player_stack == in_order_stack[0:stack_size] and ai_stack == in_order_stack[0:stack_size]:
             game_done = 1
+            result = 0
             #tie_window(window)
         elif player_stack == in_order_stack[0:stack_size]:
             game_done = 1
+            result = 1
             win_window(window)
         elif ai_stack == in_order_stack[0:stack_size]:
             game_done = 1
+            result = 2
             lose_window(window)
-            
-    
+        
+    score = calcScore(result, 4, 4)
+    scrs = readScore()
+    ins = initials(window, 0)
+    score_string = updateScore(scrs, ins,score)
+    scores(window,score_string)
+
+
+if __name__ == "__main__":
+    main()
