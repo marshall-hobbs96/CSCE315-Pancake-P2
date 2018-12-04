@@ -1,5 +1,4 @@
 # makefile
-
 all: main
 
 Main: 
