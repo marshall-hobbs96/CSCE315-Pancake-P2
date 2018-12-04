@@ -57,7 +57,7 @@ def orderWindow_tests():
 	print("The screen will open, there will be 7 pancake buttons, press the buttons according to the order you want")
 	print
 	window = Tk()
-	f.drawOrderWindow(window, 7)
+	f.drawOrderWindow(window,7)
 	window.destroy()
 	test1 = raw_input("Were there 7 different buttons? (y/n): ")
 	test2 = raw_input("Was there a random button at the bottom? (y/n): ")
@@ -84,10 +84,39 @@ def orderWindow_tests():
 		print("Test 4: FAIL")
 	print
 	
+def initials_test():
+	window = Tk()
+	window.geometry('1280x720')
+	window.title("Test")
+			
+	test1=f.initials(window, 0)
+	test2=f.initials(window, 1)
+	test3=f.initials(window, 2)
 
+	print("Test 1 initials: " + test1)
+	print("Test 2 initials: " + test2)
+	print("Test 3 initials: " + test3)
+	input1 = input("Do all of the initials match your input? Y/N: ")
+	if input1 == "y":
+		print("All tests passed!")
+	else:
+		print("Initial input not working")
+		
+def score_test():
+	window = Tk()
+	window.geometry('1280x720')
+	window.title("Test")
+
+	f.scores(window, "AA 0 BB 0 CC 0 DD 0 EE 0")
+
+	input2 = input("Did all of the scores and initials print correctly? Y/N: ")
+	if input2 == "y":
+		print("All tests passed!")
+	else:
+		print("Score output not working")	
 
 if __name__ == "__main__":	
-	#splash_tests()
-	#instruction_tests()
+	splash_tests()
+	instruction_tests()
 	orderWindow_tests()
 	
