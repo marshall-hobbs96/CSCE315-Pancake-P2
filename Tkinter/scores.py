@@ -189,7 +189,6 @@ def updateScore(scoresInput, newInitials, newScore):
 		
 	return output
 	
-
 		
 #test1=initials(window, 0)
 # test2=initials(window, 1)

@@ -4,6 +4,7 @@ from ai_turn import *
 from win_window import *
 from random import *
 from lose_window import *
+from tie_window import *
 from scores import *
 import sys
 
@@ -76,9 +77,17 @@ def main():
             status = 0
             #print result
 
-    score = calcScore(result, 4, 4)
+    f=open("param.txt","r")
+    if f.mode == 'r':
+        nd = f.read()
+    n = int(nd[0])
+    d = int(nd[1])
+    score = calcScore(result, n, d)
     scrs = readScore()
     ins = initials(window, status)
+    f=open("initials.txt","r")
+    if f.mode == 'r':
+        ins = f.read()
     score_string = updateScore(scrs, ins,score)
     scores(window,score_string)
             

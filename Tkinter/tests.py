@@ -141,7 +141,7 @@ def score_test():
 	else:
 		print("Score output not working")	
 
-def game_test():
+def game():
 	window = Tk()
 	window.geometry('1280x720')
 	window.title("Test")
@@ -157,5 +157,4 @@ if __name__ == "__main__":
 	instruction_tests()
 	difficultyWindow_tests()
 	orderWindow_tests()
-	game()
 	
