@@ -7,7 +7,7 @@ from time import *
 
 inputStack = list()
 finalStack = list()
-output_x = 500
+output_x = 550
 
 def setStack(w):
 	global finalStack
@@ -22,25 +22,7 @@ def setStack(w):
 def generateStack(stackSize, stackState,w):
 	global finalStack
 	del finalStack[:]
-	numbers = [0,0,0,0,0,0,0,0,0]                           
-	for i in stackState:		              #iterate through the user input string
-		if((i >= 0) and (i <= 9)):                   
-			finalStack.append(i)
-			numbers[i - 1] += 1
-			if(numbers[i - 1] > 1):
-				for i in xrange(stackSize):
-					finalStack.append(i + 1)             #fill with 1 - n for shuffle
-				tkMessageBox.showwarning("Warning","Since the order entered has duplicate numbers, the game is going to create a random stack")
-				gen_rand_stack(finalStack, stackSize, w)   #shuffle the stack, i.e. random
-				return
-			elif(i > stackSize):
-				for i in xrange(stackSize):
-					finalStack.append(i + 1)              #fill with 1 - n for shuffle
-				tkMessageBox.showwarning("Warning","Since you entered a number higher than the size of the stack, the game is going to create a random stack")
-				gen_rand_stack(finalStack, stackSize, w)     #shuffle the stack, i.e. random
-				return
-	if (len(finalStack) != (stackSize)):         #stacksize is 5 and user put 1 2 3 4 or something like that
-		del finalStack[:]
+	if (len(stackState) != (stackSize)):         #stacksize is 5 and user put 1 2 3 4 or something like that
 		for i in xrange(stackSize):
 			finalStack.append(i + 1)              #fill with 1 - n for shuffle
 		tkMessageBox.showwarning("Warning","Since the wrong number of inputs were entered, the game is going to create a random stack")
@@ -71,7 +53,9 @@ def addToStack(p,w,b):
 	global output_x
 	inputStack.append(p)
 	output = str(p)
-	w.create_text(output_x,325,text=output,font=("Arial",20), anchor = NW,tag = "output")
+	w.create_text(450,325,text="Order: ",font=("Arial",20), anchor = NW)
+	w.create_rectangle(538,320,730,355, dash=(7, 1, 1, 1))
+	w.create_text(output_x,325,text=output,font=("Arial",20), anchor = NW)
 	b.config(state=DISABLED,takefocus=0)
 	output_x = output_x+20
 	
@@ -116,13 +100,13 @@ def drawRandomButton(w, n):
 	for i in xrange(n):
 		finalStack.append(i + 1)                 #fill with 1 - n for shuffle	
 	rb = Button(w, text="Random", command=lambda:gen_rand_stack(finalStack, n, w), height=3, width=10)
-	rb.place(x=350,y=500)
+	rb.place(x=450,y=500)
 	
 	
 def drawSubmitButton(w, n):
 	global inputStack
 	sb = Button(w, text="Submit", command=lambda:generateStack(n, inputStack, w), height=3, width=10)
-	sb.place(x=650,y=500)
+	sb.place(x=750,y=500)
 	
 
 def drawOrderWindow(master,n):
@@ -444,124 +428,3 @@ def ai_turn(player_stacks, ai_stacks, ai_moves, window):
     return_stack = return_stack[::-1]
     return return_stack
 
-def initials(window, status):	#status is a string with a message about the winner
-	initials = ""
-	
-	#give comment depending on winner
-	if status == 0:
-		comment = "Sorry, the AI won!"
-	elif status == 1:
-		comment = "Congratulations, you won!"
-	else:
-		comment = "It was a tie!"
-		
-	#fillers are used to fix spacing in the grid
-	fill = Label(window, text = "         ", font=("Arial Bold", 120))
-	fill.pack()
-	
-	lbl = Label(window, text=comment, font=("Arial Bold", 40))
-	lbl.pack()
-	
-	lbl2 = Label(window, text="Please Enter Your Initials Below", font=("Arial Bold", 35))
-	lbl2.pack()
-	
-	fill2 = Label(window, text = "            ", font=("Arial Bold", 60))
-	fill2.pack()
-
-	txt = Entry(window,width=20)
-	txt.pack()
-	
-	def clicked():
-		initials = txt.get()
-		fill.destroy()
-		lbl.destroy()
-		lbl2.destroy()
-		fill2.destroy()
-		fill3.destroy()
-		btn.destroy()
-		txt.destroy()
-		window.quit()
-
-	fill3 = Label(window, text = "            ", font=("Arial Bold", 25))
-	fill3.pack()	
-		
-	btn = Button(window, text="Enter", command=clicked)
-	btn.pack()
-	btn.config(height=2,width=20)
-
-	window.mainloop()
-	
-	return initials
-	
-def scores(window, scoreString):		#scores is a string holding the initials and high scores
-	cont = 0
-		
-	fill = Label(window, text = "                ", font=("Arial Bold", 60))
-	fill.pack()
-	
-	lbl = Label(window, text="High Scores", font=("Arial Bold", 40))
-	lbl.pack()
-	
-	spaces = 0
-	scoreCount = 0
-	score = ""
-	scores = []
-	for x in scoreString:
-		if x == " ":
-			if spaces == 0:
-				score = score + x
-				spaces = 1
-			else:
-				scores.append(score)
-				score = ""
-				spaces = 0
-		else: 
-			score = score + x
-	scores.append(score)
-	
-	#print the high scores
-	score1 = Label(window, text=scores[0], font=("Arial Bold", 35))
-	score1.pack()
-	score2 = Label(window, text=scores[1], font=("Arial Bold", 35))
-	score2.pack()
-	score3 = Label(window, text=scores[2], font=("Arial Bold", 35))
-	score3.pack()
-	score4 = Label(window, text=scores[3], font=("Arial Bold", 35))
-	score4.pack()
-	score5 = Label(window, text=scores[4], font=("Arial Bold", 35))
-	score5.pack()
-		
-	#fill2 = Label(window, text = " ", font=("Arial Bold", 30))
-	#fill2.grid(column=0,row=7)
-		
-	def replay():
-		cont = 1
-		fill.destroy()
-		lbl.destroy()
-		replay.destroy()
-		fill2.destroy()
-		end.destroy()
-		score1.destroy()
-		score2.destroy()
-		score3.destroy()
-		score4.destroy()
-		score5.destroy()
-		window.quit()
-
-	replay = Button(window, text="Play Again", command=replay)
-	replay.pack()
-	replay.config(height=2,width=20)
-	
-	fill2 = Label(window, text = " ", font=("Arial Bold", 25))
-	fill2.pack()
-	
-	def end():
-		window.destroy()
-
-	end = Button(window, text="End Game", command=end)
-	end.pack()
-	end.config(height=2,width=20)	
-		
-	window.mainloop()
-	
-	return cont # continue - if player wants to play again
