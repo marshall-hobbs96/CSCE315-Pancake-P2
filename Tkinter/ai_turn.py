@@ -1,14 +1,12 @@
-from Tkinter import *
+from tkinter import *
 import time
 
 
 def ai_turn(player_stacks, ai_stacks, ai_moves, window):
-    sys.argv=["Main"]
+
     player_stack = []
     ai_stack = []
     ai_move = 0
-    player_stacks = player_stacks[::-1]
-    ai_stacks = ai_stacks[::-1]
 
     for x in player_stacks:
         player_stack.append(int(x))
@@ -85,8 +83,7 @@ def ai_turn(player_stacks, ai_stacks, ai_moves, window):
 
     for widget in window.winfo_children():
         widget.destroy()
-
-    return_stack = return_stack[::-1]
+    
     return return_stack
 
 
