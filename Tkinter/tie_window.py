@@ -18,6 +18,6 @@ def tie_window(window):
         window.update()
         sleep(0.2)
         window.update()
-
+    window.configure(background = "grey")
     for widget in window.winfo_children():
         widget.destroy()
