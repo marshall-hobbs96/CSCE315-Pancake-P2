@@ -444,3 +444,5 @@ def ai_turn(player_stacks, ai_stacks, ai_moves, window):
     return_stack = return_stack[::-1]
     return return_stack
 
+
+window =start()
