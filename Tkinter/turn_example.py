@@ -7,7 +7,25 @@ from lose_window import *
 from scores import *
 import sys
 
+def calc_AI_move(ai_stack):
+	n = len(ai_stack)	
+	ans = n
+	i = n-1
+	
+	while (ai_stack[i] == str(ans)):
+		ans-=1
+		i-=1
+	
+	if (ai_stack[0] == str(ans)): # if top
+		#print("in if top")
+		return str(ans)
+	else:
+		#print("in else")
+		pnum = ans	
 
+	loc = ai_stack.index(str(pnum)) + 1
+	return str(loc)
+    
 def main():
     print('test')
     arg = sys.argv[1]
@@ -23,7 +41,7 @@ def main():
     game_done = 0
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
-        ai_stack = ai_turn(player_stack, ai_stack, str(randint(1,9)), window)
+        ai_stack = ai_turn(player_stack, ai_stack, calc_AI_move(ai_stack), window)
 
 
         if player_stack[::-1] == in_order_stack[0:stack_size] and ai_stack[::-1] == in_order_stack[0:stack_size]:
