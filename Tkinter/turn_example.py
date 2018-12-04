@@ -13,18 +13,26 @@ def calc_AI_move(ai_stack):
 	i = n-1
 	
 	while (ai_stack[i] == str(ans)):
+		#print("checking: ", ans)
 		ans-=1
 		i-=1
+	
+	#print(ai_stack[0])
+	#print(ans)
 	
 	if (ai_stack[0] == str(ans)): # if top
 		#print("in if top")
 		return str(ans)
 	else:
 		#print("in else")
-		pnum = ans	
+		pnum = ans
+	
+	#print("pancake number: ", pnum)	
 
 	loc = ai_stack.index(str(pnum)) + 1
+	#print("location: ", loc)
 	return str(loc)
+	#return str(ai_stack.index(pnum))
     
 def main():
     print('test')
@@ -39,9 +47,10 @@ def main():
     print(in_order_stack[0:stack_size])
     result = 2 #0 = loss, 1 = win, 2 = tie
     game_done = 0
+    whatflip = calc_AI_move(ai_stack)
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
-        ai_stack = ai_turn(player_stack, ai_stack, calc_AI_move(ai_stack), window)
+        ai_stack = ai_turn(player_stack, ai_stack, whatflip, window)
 
 
         if player_stack == in_order_stack[0:stack_size] and ai_stack == in_order_stack[0:stack_size]:
