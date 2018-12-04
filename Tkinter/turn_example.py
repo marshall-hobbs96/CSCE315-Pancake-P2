@@ -7,33 +7,7 @@ from lose_window import *
 from scores import *
 import sys
 
-def calc_AI_move(ai_stack):
-	n = len(ai_stack)	
-	ans = n
-	i = n-1
-	
-	while (ai_stack[i] == str(ans)):
-		#print("checking: ", ans)
-		ans-=1
-		i-=1
-	
-	#print(ai_stack[0])
-	#print(ans)
-	
-	if (ai_stack[0] == str(ans)): # if top
-		#print("in if top")
-		return str(ans)
-	else:
-		#print("in else")
-		pnum = ans
-	
-	#print("pancake number: ", pnum)	
 
-	loc = ai_stack.index(str(pnum)) + 1
-	#print("location: ", loc)
-	return str(loc)
-	#return str(ai_stack.index(pnum))
-    
 def main():
     print('test')
     arg = sys.argv[1]
@@ -47,23 +21,19 @@ def main():
     print(in_order_stack[0:stack_size])
     result = 2 #0 = loss, 1 = win, 2 = tie
     game_done = 0
-    whatflip = calc_AI_move(ai_stack)
     while(game_done != 1):
         player_stack = player_turn(player_stack, ai_stack, window)
-        ai_stack = ai_turn(player_stack, ai_stack, whatflip, window)
+        ai_stack = ai_turn(player_stack, ai_stack, str(randint(1,9)), window)
 
 
         if player_stack[::-1] == in_order_stack[0:stack_size] and ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
-            result = 2
             tie_window(window)
         elif player_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
-            result = 1
             win_window(window)
         elif ai_stack[::-1] == in_order_stack[0:stack_size]:
             game_done = 1
-            result = 0
             lose_window(window)
 
     score = calcScore(result, 4, 4)
